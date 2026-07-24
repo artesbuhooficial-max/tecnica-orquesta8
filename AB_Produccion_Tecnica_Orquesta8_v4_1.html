@@ -220,6 +220,7 @@ table.gt td.num input{text-align:right}
     <button class="gbtn" onclick="document.getElementById('importFile').click()">⬆ Cargar</button>
     <input type="file" id="importFile" accept=".json" style="display:none" onchange="importJSON(event)">
     <button class="gbtn" onclick="window.print()">🖨</button>
+    <button class="gbtn" id="btnUndo" onclick="undo()" disabled title="Deshacer (Ctrl+Z)">↶ Deshacer</button>
     <button class="gbtn primary" onclick="resetPreset()">↺ Preset</button>
   </div>
 </div>
@@ -459,6 +460,10 @@ const DEFS={
 /* ================== ESTADO ================== */
 let state={items:[],cables:[],patch:[],audio:[],rider:[],prods:[],seq:1};
 let mode='select',cableFrom=null,selection=null;
+let history=[];const MAX_HISTORY=50;
+function snapshot(){history.push(JSON.stringify(state));if(history.length>MAX_HISTORY)history.shift();updateUndoBtn();}
+function undo(){if(!history.length)return;state=JSON.parse(history.pop());selection=null;refreshAll();updateUndoBtn();msg('Última acción deshecha.');}
+function updateUndoBtn(){const b=document.getElementById('btnUndo');if(b)b.disabled=!history.length;}
 let vb={x:0,y:0,w:1500,h:900};
 let layerVis={base:true,sonido:true,mon:true,luz:true,power:true};
 let aiFiles=[],lastAI=null;
@@ -737,7 +742,7 @@ function render(){
 }
 
 /* ---------- interacción ---------- */
-let drag=null;
+let drag=null,dragSnapped=false;
 function svgPoint(ev){const pt=svg.createSVGPoint();const e=ev.touches?ev.touches[0]:ev;pt.x=e.clientX;pt.y=e.clientY;return pt.matrixTransform(svg.getScreenCTM().inverse());}
 svg.addEventListener('pointerdown',ev=>{
   const g=ev.target.closest('[data-item]');
@@ -747,6 +752,7 @@ svg.addEventListener('pointerdown',ev=>{
     if(mode==='cable'){
       if(!cableFrom){cableFrom=id;msg('Origen fijado. Clic en el destino…');}
       else if(cableFrom!==id){
+        snapshot();
         const t=document.getElementById('cableTypeSel').value;
         state.cables.push({id:uid(),a:cableFrom,b:id,t,label:''});
         selection={kind:'cable',id:state.cables[state.cables.length-1].id};
@@ -757,7 +763,7 @@ svg.addEventListener('pointerdown',ev=>{
     selection={kind:'item',id};
     const it=state.items.find(i=>i.id===id);
     const p=svgPoint(ev);
-    drag={id,dx:p.x-it.x,dy:p.y-it.y};
+    drag={id,dx:p.x-it.x,dy:p.y-it.y};dragSnapped=false;
     svg.setPointerCapture(ev.pointerId);
     render();renderInspector();
   }else if(cb&&mode==='select'){selection={kind:'cable',id:cb.dataset.cable};render();renderInspector();}
@@ -769,14 +775,16 @@ svg.addEventListener('pointerdown',ev=>{
 });
 svg.addEventListener('pointermove',ev=>{
   if(!drag)return;
+  if(!dragSnapped){snapshot();dragSnapped=true;}
   const p=svgPoint(ev);
   const it=state.items.find(i=>i.id===drag.id);
   it.x=Math.round((p.x-drag.dx)/5)*5;it.y=Math.round((p.y-drag.dy)/5)*5;
   render();
 });
-svg.addEventListener('pointerup',()=>{drag=null;});
+svg.addEventListener('pointerup',()=>{drag=null;dragSnapped=false;});
 document.addEventListener('keydown',e=>{
   if((e.key==='Delete'||e.key==='Backspace')&&selection&&!['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName))deleteSelection();
+  if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'&&!['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)){e.preventDefault();undo();}
 });
 function setMode(m){
   mode=m;cableFrom=null;
@@ -788,6 +796,7 @@ function setMode(m){
 function msg(t){document.getElementById('stMsg').textContent=t;}
 function deleteSelection(){
   if(!selection)return;
+  snapshot();
   if(selection.kind==='item'){
     state.items=state.items.filter(i=>i.id!==selection.id);
     state.cables=state.cables.filter(c=>c.a!==selection.id&&c.b!==selection.id);
@@ -822,6 +831,7 @@ function renderInspector(){
 }
 function dupItem(){
   const it=state.items.find(i=>i.id===selection.id);if(!it)return;
+  snapshot();
   const n={...it,id:uid(),x:it.x+40,y:it.y+30};state.items.push(n);
   selection={kind:'item',id:n.id};render();renderInspector();
 }
@@ -838,6 +848,7 @@ function buildPalette(){
   });
   wrap.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>{
     const t=b.dataset.add;
+    snapshot();
     const it={id:uid(),t,x:vb.x+vb.w/2,y:vb.y+vb.h/2,label:DEFS[t].name};
     state.items.push(it);selection={kind:'item',id:it.id};
     setMode('select');render();renderInspector();
@@ -874,8 +885,8 @@ function renderAudio(){
     r[f]=f==='ch'?+e.target.value:e.target.value;
   });
 }
-function addAudioRow(){state.audio.push({ch:state.audio.length+1,src:'NUEVO',mic:'',stand:'—',col:'#9aa3ad',notes:''});renderAudio();}
-function delAudio(i){state.audio.splice(i,1);renderAudio();}
+function addAudioRow(){snapshot();state.audio.push({ch:state.audio.length+1,src:'NUEVO',mic:'',stand:'—',col:'#9aa3ad',notes:''});renderAudio();}
+function delAudio(i){snapshot();state.audio.splice(i,1);renderAudio();}
 
 /* ================== PATCH DMX ================== */
 const LINE_COLORS={1:'#ffb13d',2:'#ff7a3c',3:'#ff3d6e',4:'#b08cff'};
@@ -911,8 +922,8 @@ function renderPatch(){
       <small>${u.used} / 512 canales</small></div>`;
   }).join('');
 }
-function addPatchRow(){state.patch.push({line:1,fixture:'Nuevo fixture',mode:'',ch:1,qty:1,addr:1,notes:''});renderPatch();}
-function delPatch(i){state.patch.splice(i,1);renderPatch();}
+function addPatchRow(){snapshot();state.patch.push({line:1,fixture:'Nuevo fixture',mode:'',ch:1,qty:1,addr:1,notes:''});renderPatch();}
+function delPatch(i){snapshot();state.patch.splice(i,1);renderPatch();}
 function recalcAddresses(){
   const byLine={};
   state.patch.forEach(r=>{(byLine[r.line]=byLine[r.line]||[]).push(r);});
@@ -938,11 +949,12 @@ function renderRider(){
     it[e.target.dataset.f]=e.target.dataset.f==='q'?+e.target.value:e.target.value;
   });
   g.querySelectorAll('.dispDot').forEach(el=>el.onclick=e=>{
+    snapshot();
     const it=state.rider[+e.target.dataset.ci].items[+e.target.dataset.ii];
     it.d=it.d==='si'?'consultar':'si';renderRider();
   });
 }
-function addRiderItem(){state.rider[0].items.unshift({n:'Nuevo material',q:1,d:'si'});renderRider();}
+function addRiderItem(){snapshot();state.rider[0].items.unshift({n:'Nuevo material',q:1,d:'si'});renderRider();}
 
 /* ---- Cargar Excel de inventario (SheetJS) ---- */
 function loadXlsx(ev){
@@ -971,6 +983,7 @@ function loadXlsx(ev){
         });
       });
       if(!items.length){alert('No se han detectado filas con Disponible/Consultar en el Excel.');return;}
+      snapshot();
       const ix=state.rider.findIndex(c=>c.cat==='Inventario Excel');
       if(ix>=0)state.rider.splice(ix,1);
       state.rider.unshift({cat:'Inventario Excel',items});
@@ -1084,11 +1097,11 @@ function renderProds(){
   });
   fillProdSelect();
 }
-function addProd(){state.prods.unshift({id:uid(),nombre:'Nuevo bolo',lugar:'',fecha:'',formato:'',estado:'propuesta',material:[],notas:''});renderProds();}
-function delProd(i){if(confirm('¿Eliminar producción?')){state.prods.splice(i,1);renderProds();}}
-function dupProd(i){const p=state.prods[i];state.prods.splice(i+1,0,JSON.parse(JSON.stringify({...p,id:uid(),nombre:p.nombre+' (copia)'})));renderProds();}
-function addMat(pi){state.prods[pi].material.push({n:'Material',q:1});renderProds();}
-function delMat(pi,mi){state.prods[pi].material.splice(mi,1);renderProds();}
+function addProd(){snapshot();state.prods.unshift({id:uid(),nombre:'Nuevo bolo',lugar:'',fecha:'',formato:'',estado:'propuesta',material:[],notas:''});renderProds();}
+function delProd(i){if(confirm('¿Eliminar producción?')){snapshot();state.prods.splice(i,1);renderProds();}}
+function dupProd(i){snapshot();const p=state.prods[i];state.prods.splice(i+1,0,JSON.parse(JSON.stringify({...p,id:uid(),nombre:p.nombre+' (copia)'})));renderProds();}
+function addMat(pi){snapshot();state.prods[pi].material.push({n:'Material',q:1});renderProds();}
+function delMat(pi,mi){snapshot();state.prods[pi].material.splice(mi,1);renderProds();}
 function fillProdSelect(){
   const sel=document.getElementById('aiProdSel');
   sel.innerHTML=`<option value="">— Crear producción nueva —</option>`+
@@ -1300,6 +1313,7 @@ function renderPatchResult(p){
 }
 function applyAIPatch(){
   if(!lastAI||!lastAI.canales)return;
+  snapshot();
   state.audio=lastAI.canales.map((c,i)=>({
     ch:parseInt(c.ch)||i+1,
     src:String(c.src||'').toUpperCase(),
@@ -1335,6 +1349,7 @@ function renderAIResult(p){
 }
 function aiToProd(){
   if(!lastAI)return;
+  snapshot();
   const sel=document.getElementById('aiProdSel').value;
   const material=lastAI.items.map(i=>({n:i.inventario||i.pedido,q:+i.cantidad||1}));
   if(sel===''){
@@ -1362,18 +1377,19 @@ function exportJSON(){
 function importJSON(ev){
   const f=ev.target.files[0];if(!f)return;
   const r=new FileReader();
-  r.onload=()=>{try{state=JSON.parse(r.result);state.prods=state.prods||[];state.audio=state.audio||[];refreshAll();msg('Proyecto cargado.');}catch(e){alert('JSON no válido');}};
+  r.onload=()=>{try{snapshot();state=JSON.parse(r.result);state.prods=state.prods||[];state.audio=state.audio||[];refreshAll();msg('Proyecto cargado.');}catch(e){alert('JSON no válido');}};
   r.readAsText(f);ev.target.value='';
 }
 function resetPreset(){
   if(!confirm('¿Restaurar el preset de la orquesta de 8 músicos? Se perderán los cambios no guardados.'))return;
+  snapshot();
   buildPreset();selection=null;refreshAll();
 }
 function refreshAll(){render();renderInspector();renderAudio();renderPatch();renderRider();renderProds();}
 
 /* ================== INIT ================== */
 buildPreset();buildPalette();buildCableSel();buildLayerChips();
-applyVB();refreshAll();loadAICfg();onAITaskChange();
+applyVB();refreshAll();loadAICfg();onAITaskChange();updateUndoBtn();
 </script>
 </body>
 </html>
