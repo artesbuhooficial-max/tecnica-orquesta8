@@ -132,7 +132,9 @@
     <div class="header-row">
       <input id="eventInput" placeholder="Evento / gira">
       <input id="fechaInput" placeholder="Fecha" style="max-width:120px;">
+      <input id="responsableInput" placeholder="Responsable general" style="max-width:150px;">
     </div>
+    <div style="font-size:10px;color:var(--ink-soft);margin-top:6px">Responsable por defecto de todo el material. Si un ítem concreto lo lleva otra persona, escríbela en su campo "Persona responsable".</div>
   </div>
 
   <div class="summary" id="summary"></div>
@@ -194,6 +196,7 @@
       title: "Control de Material Técnico",
       event: "",
       fecha: "",
+      responsable: "Samuel",
       categories: [
         { id: uid(), name: "Pies y soportes", items: [
           item("Pie de micrófono cantante", 3),
@@ -250,6 +253,7 @@
   }
 
   let data = load();
+  if(!data.responsable) data.responsable = "Samuel";
   let openCats = {};
   data.categories.forEach(c => openCats[c.id] = true);
 
@@ -272,15 +276,18 @@
   const titleInput = document.getElementById('titleInput');
   const eventInput = document.getElementById('eventInput');
   const fechaInput = document.getElementById('fechaInput');
+  const responsableInput = document.getElementById('responsableInput');
 
   function renderHeader(){
     titleInput.value = data.title;
     eventInput.value = data.event;
     fechaInput.value = data.fecha;
+    responsableInput.value = data.responsable || "";
   }
   titleInput.addEventListener('input', e => { data.title = e.target.value; save(); });
   eventInput.addEventListener('input', e => { data.event = e.target.value; save(); });
   fechaInput.addEventListener('input', e => { data.fecha = e.target.value; save(); });
+  responsableInput.addEventListener('input', e => { data.responsable = e.target.value; save(); renderCategories(); });
 
   function renderSummary(){
     let total=0, ret=0, dev=0;
@@ -364,7 +371,7 @@
       </div>
       <div class="item-row">
         <label class="qty-label">Cant. <input type="number" min="0" class="qty-input" value="${it.qty}"></label>
-        <input class="person-input" placeholder="Persona responsable" value="${escapeAttr(it.person)}">
+        <input class="person-input" placeholder="${escapeAttr(data.responsable ? 'Por defecto: '+data.responsable : 'Persona responsable')}" title="Déjalo vacío para usar el responsable general (${escapeAttr(data.responsable||'sin definir')}). Escribe aquí solo si este material concreto lo lleva otra persona." value="${escapeAttr(it.person)}">
       </div>
       <input class="notes-input" placeholder="Notas..." value="${escapeAttr(it.notes)}">
       <div class="btn-row">
