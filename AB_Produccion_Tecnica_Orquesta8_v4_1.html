@@ -129,7 +129,7 @@ table.gt td.num input{text-align:right}
 .rCat{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
 .rCat h3{padding:10px 14px;background:var(--panel2);border-bottom:1px solid var(--line);font-size:15px;text-transform:uppercase;letter-spacing:.08em;display:flex;justify-content:space-between;align-items:center}
 .rCat h3 .cnt{font-family:'IBM Plex Mono';font-size:10px;color:var(--ink-faint)}
-.rItem{display:grid;grid-template-columns:46px 1fr 30px;gap:8px;padding:8px 12px;border-bottom:1px solid var(--line);align-items:center}
+.rItem{display:grid;grid-template-columns:46px 1fr 30px 22px;gap:8px;padding:8px 12px;border-bottom:1px solid var(--line);align-items:center}
 .rItem:last-child{border-bottom:none}
 .rItem .qty input{width:42px;text-align:center;padding:4px 2px}
 .rItem .nm{font-size:11.5px;line-height:1.35}
@@ -985,12 +985,19 @@ function renderRider(){
         <span class="qty"><input type="number" min="0" value="${it.q}" data-ci="${ci}" data-ii="${ii}" data-f="q"></span>
         <span class="nm"><input style="width:100%;background:none;border:none;padding:2px 0" value="${esc(it.n)}" data-ci="${ci}" data-ii="${ii}" data-f="n">${it.note?`<small>${esc(it.note)}</small>`:''}</span>
         <span class="dispDot disp-${it.d}" title="clic = alternar" data-ci="${ci}" data-ii="${ii}" style="cursor:pointer"></span>
+        <button class="rowDel" title="Eliminar material" data-ci="${ci}" data-ii="${ii}">✕</button>
       </div>`).join('');
     g.appendChild(div);
   });
   g.querySelectorAll('input').forEach(el=>el.onchange=e=>{
     const it=state.rider[+e.target.dataset.ci].items[+e.target.dataset.ii];
     it[e.target.dataset.f]=e.target.dataset.f==='q'?+e.target.value:e.target.value;
+  });
+  g.querySelectorAll('.rItem>.rowDel').forEach(el=>el.onclick=e=>{
+    snapshot();
+    const ci=+e.target.dataset.ci,ii=+e.target.dataset.ii;
+    state.rider[ci].items.splice(ii,1);
+    renderRider();
   });
   g.querySelectorAll('.dispDot').forEach(el=>el.onclick=e=>{
     snapshot();
