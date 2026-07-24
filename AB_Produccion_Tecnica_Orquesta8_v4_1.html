@@ -60,8 +60,10 @@ input:focus,select:focus,textarea:focus{border-color:var(--ab)}
 .palGroup.open>button.palHead .chev{transform:rotate(90deg)}
 .palItems{display:none;padding:7px 2px 4px;grid-template-columns:1fr 1fr;gap:6px}
 .palGroup.open .palItems{display:grid}
-.palItem{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px 5px 6px;text-align:center;color:var(--ink-dim);font-size:10px;line-height:1.25;display:flex;flex-direction:column;align-items:center;gap:5px}
+.palItem{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px 5px 6px;text-align:center;color:var(--ink-dim);font-size:10px;line-height:1.25;display:flex;flex-direction:column;align-items:center;gap:5px}
 .palItem:hover{border-color:var(--ab);color:var(--ink)}
+.palEdit{position:absolute;top:3px;right:4px;font-size:10px;color:var(--ink-faint);padding:1px 4px;border-radius:4px;line-height:1.6}
+.palEdit:hover{color:var(--ab);background:rgba(255,122,60,.15)}
 .palItem .ico{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-family:'Barlow Condensed';font-weight:700;font-size:11px;color:#10131a}
 #canvasCol{flex:1;display:flex;flex-direction:column;min-width:0}
 #stageToolbar{display:flex;align-items:center;gap:10px;padding:8px 12px;border-bottom:1px solid var(--line);background:var(--panel);flex-wrap:wrap}
@@ -221,6 +223,8 @@ table.gt td.num input{text-align:right}
     <input type="file" id="importFile" accept=".json" style="display:none" onchange="importJSON(event)">
     <button class="gbtn" onclick="window.print()">🖨</button>
     <button class="gbtn" id="btnUndo" onclick="undo()" disabled title="Deshacer (Ctrl+Z)">↶ Deshacer</button>
+    <button class="gbtn" id="btnSaveGh" onclick="saveToGitHub()" title="Guarda el proyecto actual en GitHub (commit directo, sin descargar nada)">☁ Guardar en GitHub</button>
+    <button class="gbtn" onclick="openGhCfg()" title="Configurar conexión con GitHub">⚙</button>
     <button class="gbtn primary" onclick="resetPreset()">↺ Preset</button>
   </div>
 </div>
@@ -234,6 +238,13 @@ table.gt td.num input{text-align:right}
   <div id="canvasCol">
     <div id="stageToolbar">
       <div class="tgroup"><span class="tlabel">Capas</span><div id="layerChips" style="display:flex;gap:6px;flex-wrap:wrap"></div></div>
+      <div class="tgroup">
+        <span class="tlabel">Escenario</span>
+        <input id="stageW" type="number" min="1" max="60" step="0.5" style="width:54px" title="Ancho (m)">
+        <span style="color:var(--ink-faint)">×</span>
+        <input id="stageD" type="number" min="1" max="60" step="0.5" style="width:54px" title="Fondo (m)">
+        <span style="color:var(--ink-faint);font-size:10px">m</span>
+      </div>
       <div class="tgroup">
         <span class="tlabel">Modo</span>
         <button class="modeBtn active" id="mode-select" onclick="setMode('select')">✥ Mover</button>
@@ -402,6 +413,21 @@ table.gt td.num input{text-align:right}
   </div>
 </div>
 
+<div id="ghCfgOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:50;align-items:center;justify-content:center">
+  <div style="background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:18px;width:380px;max-width:92vw;display:flex;flex-direction:column;gap:10px">
+    <h3 style="font-size:15px;text-transform:uppercase;letter-spacing:.08em">Guardar en GitHub</h3>
+    <div class="field"><label>Repositorio (owner/repo)</label><input id="ghRepo" placeholder="artesbuhooficial-max/tecnica-orquesta8"></div>
+    <div class="field"><label>Rama</label><input id="ghBranch" placeholder="master"></div>
+    <div class="field"><label>Ruta del archivo</label><input id="ghPath" placeholder="data/estado.json"></div>
+    <div class="field"><label>Token de GitHub</label><input id="ghToken" type="password" placeholder="github_pat_…" autocomplete="off"></div>
+    <span style="font-size:9.5px;color:var(--ink-faint);line-height:1.5">El token se guarda solo en este navegador (localStorage), nunca en el repositorio. No lo uses en un ordenador compartido — cualquiera con acceso a este navegador podría leerlo. Crea un token <b style="color:var(--ink-dim)">fine-grained</b> limitado a este único repositorio, con permiso solo de "Contents: Read and write" y con fecha de caducidad.</span>
+    <div class="iBtnRow">
+      <button class="iBtn" onclick="closeGhCfg()">Cerrar</button>
+      <button class="iBtn" style="border-color:var(--ab);color:var(--ab)" onclick="saveGhCfgAndClose()">Guardar configuración</button>
+    </div>
+  </div>
+</div>
+
 <script>
 /* ================== DEFINICIONES ================== */
 const LAYERS={
@@ -474,7 +500,7 @@ const norm=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u03
 /* ================== PRESET ================== */
 const CH_COLORS={drum:'#9b59f0',oh:'#22b573',bass:'#ffb13d',gtr:'#22b573',keys:'#ff5252',vox:'#3d6bff',pc:'#9aa3ad',talkback:'#6b7785'};
 function buildPreset(){
-  state={items:[],cables:[],patch:[],audio:[],rider:[],prods:[],seq:1};
+  state={items:[],cables:[],patch:[],audio:[],rider:[],prods:[],seq:1,stage:{w:12,d:8},catalog:{}};
   const I=(t,x,y,label,extra)=>{const it={id:uid(),t,x,y,label:label||DEFS[t].name,...(extra||{})};state.items.push(it);return it.id;};
   const C=(a,b,t,label)=>state.cables.push({id:uid(),a,b,t,label:label||''});
 
@@ -680,13 +706,17 @@ function cableGeom(c,lane){
   const d=`M${A.x},${A.y} L${A.x},${midY-sy*rr} Q${A.x},${midY} ${A.x+sx*rr},${midY} L${B.x-sx*rr},${midY} Q${B.x},${midY} ${B.x},${midY+sy2*rr} L${B.x},${B.y}`;
   return{d,lx:(A.x+B.x)/2,ly:midY-6,A,B};
 }
+const STAGE_SCALE=70,STAGE_CX=730,STAGE_CY=350;
 function render(){
+  state.stage=state.stage||{w:12,d:8};
+  const stW=state.stage.w*STAGE_SCALE,stD=state.stage.d*STAGE_SCALE;
+  const stX=STAGE_CX-stW/2,stY=STAGE_CY-stD/2;
   const frag=[];
   frag.push(`<defs><pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
       <path d="M50 0H0V50" fill="none" stroke="#222a33" stroke-width="1"/></pattern></defs>
   <rect x="0" y="0" width="1500" height="900" fill="url(#grid)"/>
-  <rect x="290" y="80" width="880" height="540" fill="rgba(255,255,255,.015)" stroke="#3a4450" stroke-width="2" rx="6"/>
-  <text x="300" y="72" fill="#5b6672" font-size="13" font-family="Barlow Condensed" letter-spacing="2">ESCENARIO 12 × 8 m — VISTA PLANTA (público abajo)</text>
+  <rect x="${stX}" y="${stY}" width="${stW}" height="${stD}" fill="rgba(255,255,255,.015)" stroke="#3a4450" stroke-width="2" rx="6"/>
+  <text x="${stX+10}" y="${stY-8}" fill="#5b6672" font-size="13" font-family="Barlow Condensed" letter-spacing="2">ESCENARIO ${state.stage.w} × ${state.stage.d} m — VISTA PLANTA (público abajo)</text>
   <rect x="560" y="748" width="800" height="116" fill="rgba(61,214,255,.025)" stroke="#2c343e" stroke-dasharray="6 5" rx="6"/>
   <text x="570" y="741" fill="#5b6672" font-size="12" font-family="Barlow Condensed" letter-spacing="2">CONTROL FOH</text>
   <text x="700" y="690" fill="#39424d" font-size="22" font-family="Barlow Condensed" letter-spacing="6">PÚBLICO ▼</text>`);
@@ -727,7 +757,7 @@ function render(){
         Array.from({length:Math.floor(w/22)},(_,i)=>`<line x1="${-w/2+i*22}" y1="${-h/2}" x2="${-w/2+(i+1)*22}" y2="${h/2}" stroke="${d.c}" stroke-width="1.2"/>`).join('');
       selR=`<rect class="sel" x="${-w/2-5}" y="${-h/2-7}" width="${w+10}" height="${h+14}" rx="4"/>`;}
     else{body=`<rect class="body" x="${-w/2}" y="${-h/2}" width="${w}" height="${h}" rx="6" fill="${d.c}"/>`;selR=`<rect class="sel" x="${-w/2-5}" y="${-h/2-5}" width="${w+10}" height="${h+10}" rx="8"/>`;}
-    const gl=it.g||d.g;
+    const gl=it.g||defGlyph(it.t);
     const glyph=d.shape==='truss'?'':`<text class="glyph" text-anchor="middle" dy="4" font-size="${Math.min(13,w/3.4+3)}">${esc(gl)}</text>`;
     frag.push(`<g class="item${sel?' selected':''}" transform="translate(${it.x},${it.y}) rotate(${it.rot||0})" data-item="${it.id}">
       ${body}${glyph}${sel?selR:''}<text class="lab" text-anchor="middle" y="${h/2+15}">${esc(it.label)}</text></g>`);
@@ -810,7 +840,7 @@ function renderInspector(){
     const it=state.items.find(i=>i.id===selection.id);if(!it){selection=null;return renderInspector();}
     const d=DEFS[it.t];
     box.innerHTML=`<h3>Elemento</h3>
-    <div class="field"><label>Tipo</label><div style="font-size:11.5px;color:var(--ink-dim)">${esc(d.name)}</div></div>
+    <div class="field"><label>Tipo <span style="color:var(--ink-faint);text-transform:none;letter-spacing:0">(renombrar en el catálogo)</span></label><div style="font-size:11.5px;color:var(--ink-dim)">${esc(defName(it.t))}</div></div>
     <div class="field"><label>Etiqueta</label><input id="iLabel" value="${esc(it.label)}"></div>
     <div class="field"><label>Capa</label><select id="iLayer">${Object.entries(LAYERS).map(([k,l])=>`<option value="${k}"${(it.layerOverride||d.layer)===k?' selected':''}>${l.name}</option>`).join('')}</select></div>
     <div class="field"><label>Rotación</label><input id="iRot" type="range" min="0" max="345" step="15" value="${it.rot||0}"></div>
@@ -835,6 +865,18 @@ function dupItem(){
   const n={...it,id:uid(),x:it.x+40,y:it.y+30};state.items.push(n);
   selection={kind:'item',id:n.id};render();renderInspector();
 }
+function defName(t){return (state.catalog&&state.catalog[t]&&state.catalog[t].name)||DEFS[t].name;}
+function defGlyph(t){return (state.catalog&&state.catalog[t]&&state.catalog[t].g)||DEFS[t].g;}
+function renameCatalog(t){
+  const name=prompt('Nombre completo para «'+DEFS[t].name+'»:',defName(t));
+  if(name===null)return;
+  const g=prompt('Texto corto del icono (máx. 6 caracteres):',defGlyph(t));
+  if(g===null)return;
+  snapshot();
+  state.catalog=state.catalog||{};
+  state.catalog[t]={name:name.trim()||DEFS[t].name,g:(g.trim()||DEFS[t].g).slice(0,6).toUpperCase()};
+  buildPalette();render();renderInspector();
+}
 function buildPalette(){
   const groups={};
   Object.entries(DEFS).forEach(([k,d])=>{(groups[d.cat]=groups[d.cat]||[]).push([k,d]);});
@@ -842,18 +884,19 @@ function buildPalette(){
   Object.entries(groups).forEach(([cat,items],gi)=>{
     const g=document.createElement('div');g.className='palGroup'+(gi<2?' open':'');
     g.innerHTML=`<button class="palHead">${cat}<span class="chev">▸</span></button>
-      <div class="palItems">${items.map(([k,d])=>`<button class="palItem" data-add="${k}"><span class="ico" style="background:${d.c}">${d.g}</span>${d.name}</button>`).join('')}</div>`;
+      <div class="palItems">${items.map(([k,d])=>`<button class="palItem" data-add="${k}"><span class="ico" style="background:${d.c}">${esc(defGlyph(k))}</span>${esc(defName(k))}<span class="palEdit" data-edit="${k}" title="Renombrar">✎</span></button>`).join('')}</div>`;
     g.querySelector('.palHead').onclick=()=>g.classList.toggle('open');
     wrap.appendChild(g);
   });
   wrap.querySelectorAll('[data-add]').forEach(b=>b.onclick=()=>{
     const t=b.dataset.add;
     snapshot();
-    const it={id:uid(),t,x:vb.x+vb.w/2,y:vb.y+vb.h/2,label:DEFS[t].name};
+    const it={id:uid(),t,x:vb.x+vb.w/2,y:vb.y+vb.h/2,label:defName(t)};
     state.items.push(it);selection={kind:'item',id:it.id};
     setMode('select');render();renderInspector();
     msg('Elemento añadido al centro · arrástralo a su sitio.');
   });
+  wrap.querySelectorAll('[data-edit]').forEach(sp=>sp.onclick=e=>{e.stopPropagation();renameCatalog(sp.dataset.edit);});
 }
 function buildCableSel(){document.getElementById('cableTypeSel').innerHTML=Object.entries(CABLE_TYPES).map(([k,t])=>`<option value="${k}">${t.name}</option>`).join('');}
 function buildLayerChips(){
@@ -1377,19 +1420,108 @@ function exportJSON(){
 function importJSON(ev){
   const f=ev.target.files[0];if(!f)return;
   const r=new FileReader();
-  r.onload=()=>{try{snapshot();state=JSON.parse(r.result);state.prods=state.prods||[];state.audio=state.audio||[];refreshAll();msg('Proyecto cargado.');}catch(e){alert('JSON no válido');}};
+  r.onload=()=>{try{snapshot();state=JSON.parse(r.result);state.prods=state.prods||[];state.audio=state.audio||[];state.catalog=state.catalog||{};state.stage=state.stage||{w:12,d:8};refreshAll();buildPalette();msg('Proyecto cargado.');}catch(e){alert('JSON no válido');}};
   r.readAsText(f);ev.target.value='';
 }
+
+/* ================== GUARDADO EN GITHUB ================== */
+let ghCfg={repo:'artesbuhooficial-max/tecnica-orquesta8',branch:'master',path:'data/estado.json',token:''};
+function loadGhCfg(){
+  try{const s=JSON.parse(localStorage.getItem('ab_ghcfg')||'null');if(s)ghCfg={...ghCfg,...s};}catch(e){}
+}
+function openGhCfg(){
+  document.getElementById('ghRepo').value=ghCfg.repo;
+  document.getElementById('ghBranch').value=ghCfg.branch;
+  document.getElementById('ghPath').value=ghCfg.path;
+  document.getElementById('ghToken').value=ghCfg.token;
+  document.getElementById('ghCfgOverlay').style.display='flex';
+}
+function closeGhCfg(){document.getElementById('ghCfgOverlay').style.display='none';}
+function saveGhCfgAndClose(){
+  ghCfg.repo=document.getElementById('ghRepo').value.trim();
+  ghCfg.branch=document.getElementById('ghBranch').value.trim()||'master';
+  ghCfg.path=document.getElementById('ghPath').value.trim()||'data/estado.json';
+  ghCfg.token=document.getElementById('ghToken').value.trim();
+  try{localStorage.setItem('ab_ghcfg',JSON.stringify(ghCfg));}catch(e){}
+  closeGhCfg();
+}
+function utf8ToB64(str){
+  const bytes=new TextEncoder().encode(str);
+  let bin='';bytes.forEach(b=>bin+=String.fromCharCode(b));
+  return btoa(bin);
+}
+function b64ToUtf8(b64){
+  const bin=atob(b64.replace(/\n/g,''));
+  const bytes=Uint8Array.from(bin,c=>c.charCodeAt(0));
+  return new TextDecoder().decode(bytes);
+}
+async function saveToGitHub(){
+  if(!ghCfg.repo||!ghCfg.token){openGhCfg();return;}
+  const btn=document.getElementById('btnSaveGh');
+  const orig=btn.textContent;btn.disabled=true;btn.textContent='☁ Guardando…';
+  try{
+    const api=`https://api.github.com/repos/${ghCfg.repo}/contents/${ghCfg.path}`;
+    const headers={'Authorization':'Bearer '+ghCfg.token,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
+    let sha=null;
+    const cur=await fetch(`${api}?ref=${encodeURIComponent(ghCfg.branch)}`,{headers});
+    if(cur.status===200){const j=await cur.json();sha=j.sha;}
+    else if(cur.status!==404){const j=await cur.json().catch(()=>({}));throw new Error(j.message||('HTTP '+cur.status));}
+    const body={message:'Actualizar estado del proyecto · '+new Date().toISOString().slice(0,16).replace('T',' '),
+      content:utf8ToB64(JSON.stringify(state,null,1)),branch:ghCfg.branch};
+    if(sha)body.sha=sha;
+    const put=await fetch(api,{method:'PUT',headers:{...headers,'Content-Type':'application/json'},body:JSON.stringify(body)});
+    const pj=await put.json();
+    if(!put.ok)throw new Error(pj.message||('HTTP '+put.status));
+    msg('✓ Guardado en GitHub ('+ghCfg.repo+').');
+    btn.textContent='✓ Guardado';setTimeout(()=>{btn.textContent=orig;},2500);
+  }catch(e){
+    alert('No se pudo guardar en GitHub: '+e.message+'\n\nComprueba el token (permiso "Contents: Read and write" sobre el repo), y que repo/rama/ruta sean correctos.');
+    btn.textContent=orig;
+  }
+  btn.disabled=false;
+}
+async function loadRemoteState(){
+  if(!ghCfg.repo)return false;
+  try{
+    const api=`https://api.github.com/repos/${ghCfg.repo}/contents/${ghCfg.path}`;
+    const headers={'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
+    const r=await fetch(`${api}?ref=${encodeURIComponent(ghCfg.branch)}`,{headers});
+    if(!r.ok)return false;
+    const j=await r.json();
+    const parsed=JSON.parse(b64ToUtf8(j.content));
+    if(!parsed||!Array.isArray(parsed.items))return false;
+    state=parsed;
+    state.prods=state.prods||[];state.audio=state.audio||[];state.catalog=state.catalog||{};state.stage=state.stage||{w:12,d:8};
+    return true;
+  }catch(e){return false;}
+}
+
 function resetPreset(){
   if(!confirm('¿Restaurar el preset de la orquesta de 8 músicos? Se perderán los cambios no guardados.'))return;
   snapshot();
   buildPreset();selection=null;refreshAll();
 }
-function refreshAll(){render();renderInspector();renderAudio();renderPatch();renderRider();renderProds();}
+function refreshAll(){render();renderInspector();renderAudio();renderPatch();renderRider();renderProds();syncStageInputs();}
+function syncStageInputs(){
+  const w=document.getElementById('stageW'),d=document.getElementById('stageD');
+  if(w)w.value=state.stage.w;if(d)d.value=state.stage.d;
+}
+function initStageInputs(){
+  const w=document.getElementById('stageW'),d=document.getElementById('stageD');
+  const apply=()=>{
+    const nw=Math.max(1,+w.value||state.stage.w),nd=Math.max(1,+d.value||state.stage.d);
+    if(nw===state.stage.w&&nd===state.stage.d)return;
+    snapshot();
+    state.stage={w:nw,d:nd};
+    render();
+  };
+  w.onchange=apply;d.onchange=apply;
+}
 
 /* ================== INIT ================== */
 buildPreset();buildPalette();buildCableSel();buildLayerChips();
-applyVB();refreshAll();loadAICfg();onAITaskChange();updateUndoBtn();
+applyVB();refreshAll();loadAICfg();onAITaskChange();updateUndoBtn();initStageInputs();loadGhCfg();
+loadRemoteState().then(ok=>{if(ok){buildPalette();refreshAll();msg('Proyecto cargado desde GitHub ('+ghCfg.repo+').');}});
 </script>
 </body>
 </html>
