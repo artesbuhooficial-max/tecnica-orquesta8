@@ -1,0 +1,207 @@
+{
+ "title": "Control de Material Técnico",
+ "event": "Boda Samuel Socas",
+ "fecha": "25/07/26",
+ "categories": [
+  {
+   "id": "3k9gcvmz",
+   "name": "Pies y soportes",
+   "items": [
+    {
+     "id": "p1d7xm7i",
+     "name": "Pie de micrófono cantante",
+     "qty": 3,
+     "person": "",
+     "retirada": true,
+     "devuelta": false,
+     "notes": ""
+    },
+    {
+     "id": "ze5c7y6d",
+     "name": "Pie aéreo",
+     "qty": 1,
+     "person": "",
+     "retirada": true,
+     "devuelta": false,
+     "notes": ""
+    },
+    {
+     "id": "180a7sld",
+     "name": "Pie caja",
+     "qty": 1,
+     "person": "",
+     "retirada": true,
+     "devuelta": false,
+     "notes": ""
+    }
+   ]
+  },
+  {
+   "id": "rw2c3n3z",
+   "name": "Micrófonía",
+   "items": [
+    {
+     "id": "s7iagwm9",
+     "name": "Shure SM57",
+     "qty": 1,
+     "person": "",
+     "retirada": true,
+     "devuelta": false,
+     "notes": ""
+    },
+    {
+     "id": "5yx2mti4",
+     "name": "Shure SM58",
+     "qty": 1,
+     "person": "",
+     "retirada": true,
+     "devuelta": false,
+     "notes": ""
+    },
+    {
+     "id": "xlayj9oc",
+     "name": "SE",
+     "qty": 2,
+     "person": "",
+     "retirada": true,
+     "devuelta": false,
+     "notes": ""
+    },
+    {
+     "id": "crxcxge0",
+     "name": "Set batería completo AKG",
+     "qty": 1,
+     "person": "",
+     "retirada": true,
+     "devuelta": false,
+     "notes": "incluye clamps y case"
+    }
+   ]
+  },
+  {
+   "id": "lfbjuiea",
+   "name": "DI",
+   "items": [
+    {
+     "id": "z8ohlubz",
+     "name": "DI bajo Behringer",
+     "qty": 1,
+     "person": "",
+     "retirada": true,
+     "devuelta": false,
+     "notes": ""
+    },
+    {
+     "id": "ftbrnwrc",
+     "name": "DI guitarra",
+     "qty": 1,
+     "person": "",
+     "retirada": true,
+     "devuelta": false,
+     "notes": ""
+    }
+   ]
+  },
+  {
+   "id": "mneocivm",
+   "name": "PA",
+   "items": [
+    {
+     "id": "mjpn0o26",
+     "name": "JBL serie 815 (medios-agudos)",
+     "qty": 2,
+     "person": "",
+     "retirada": true,
+     "devuelta": false,
+     "notes": ""
+    }
+   ]
+  },
+  {
+   "id": "c8ao3gib",
+   "name": "Monitores",
+   "items": [
+    {
+     "id": "094ucy9n",
+     "name": "Behringer P2",
+     "qty": 4,
+     "person": "",
+     "retirada": true,
+     "devuelta": false,
+     "notes": "unidades según nº de músicos"
+    },
+    {
+     "id": "51wd480f",
+     "name": "Roland Cube Street",
+     "qty": 1,
+     "person": "",
+     "retirada": true,
+     "devuelta": false,
+     "notes": "reserva por si falla monitor"
+    }
+   ]
+  },
+  {
+   "id": "6v2sduuv",
+   "name": "Cableado y alimentación",
+   "items": [
+    {
+     "id": "wak9ctni",
+     "name": "Rulo 50m",
+     "qty": 1,
+     "person": "",
+     "retirada": true,
+     "devuelta": false,
+     "notes": ""
+    },
+    {
+     "id": "tyn2aqq5",
+     "name": "Manguera larga",
+     "qty": 4,
+     "person": "",
+     "retirada": true,
+     "devuelta": false,
+     "notes": ""
+    },
+    {
+     "id": "sigz6yhs",
+     "name": "Cable alimentador",
+     "qty": 4,
+     "person": "",
+     "retirada": true,
+     "devuelta": false,
+     "notes": "ajustar cantidad"
+    },
+    {
+     "id": "sxia1yjh",
+     "name": "Cable Canon (XLR) — Artes Búho",
+     "qty": 20,
+     "person": "",
+     "retirada": true,
+     "devuelta": false,
+     "notes": ""
+    },
+    {
+     "id": "dshcc5f3",
+     "name": "Regleta",
+     "qty": 3,
+     "person": "",
+     "retirada": true,
+     "devuelta": false,
+     "notes": ""
+    }
+   ]
+  },
+  {
+   "id": "zrsjdn3m",
+   "name": "Mesa de sonido",
+   "items": []
+  },
+  {
+   "id": "g8di0rft",
+   "name": "Extras recomendados",
+   "items": []
+  }
+ ],
+ "responsable": "Samuel"
+}
