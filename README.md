@@ -18,7 +18,12 @@ El estado completo de un montaje (plano, cables, patch, rider, producciones) se 
 - **Rider / Inventario**: catálogo real de material de Artes Búho por categorías, con estado disponible/consultar, editable manualmente o cargable desde un Excel (`.xlsx`/`.xls`/`.csv`) mediante SheetJS.
 - **Producciones**: tarjetas de bolos activos (lugar, fecha, formato, estado, material asignado) con KPIs y **detección automática de choques de material** entre producciones en la misma fecha.
 - **Asistente IA (Claude)**: sube una foto/PDF de un rider o pega texto y la app llama a la API de Claude para (a) reescribir el patch de audio como lo haría un técnico de FOH, o (b) comprobar la disponibilidad de todo el rider contra el inventario, marcando qué falta o está parcial.
+- **Escenario editable**: ancho/fondo en metros configurable desde la toolbar del Stage Plan; redimensiona el plano en directo.
+- **Catálogo de elementos renombrable**: cada tipo de elemento del panel lateral (focos, PA, mesas…) se puede renombrar (nombre + texto del icono) con el botón ✎, para reflejar equipo real/alquilado sin tocar código.
+- **Deshacer (Ctrl+Z / botón)**: revierte hasta 50 pasos de acciones destructivas o de creación (borrar, mover, duplicar, importar, aplicar resultado de IA, etc.).
+- **Guardado compartido en GitHub**: botón "☁ Guardar en GitHub" que escribe el estado completo (`data/estado.json`) directamente en este repositorio vía la API de contenidos de GitHub, además del export/import JSON manual. Al abrir la página se intenta cargar automáticamente esa última copia guardada.
 - **Import/Export JSON** del estado completo del proyecto, e impresión con estilos dedicados (`@media print`).
+- **Conectado con el checklist de salida/entrada de material** (`CONTROL DE SALIDA ENTRADA EQUIPO/`, ver más abajo): comparten datos a través del mismo `data/estado.json`.
 
 ## Tecnologías utilizadas
 
@@ -36,11 +41,27 @@ El estado completo de un montaje (plano, cables, patch, rider, producciones) se 
 
 ```
 TECNICA COMPLETA ARTES BUHO/
-├── AB_Produccion_Tecnica_Orquesta8_v4_1.html   # Aplicación completa (HTML + CSS + JS)
-└── README.md                                    # Este documento
+├── AB_Produccion_Tecnica_Orquesta8_v4_1.html    # Aplicación completa (HTML + CSS + JS)
+├── index.html                                    # Redirige a la app anterior (para GitHub Pages)
+├── README.md                                     # Este documento
+├── data/
+│   └── estado.json                               # Último estado guardado vía "☁ Guardar en GitHub" (se crea al primer guardado)
+└── CONTROL DE SALIDA ENTRADA EQUIPO/
+    ├── index.html                                # Checklist de retirada/devolución de material (app independiente)
+    └── README.md
 ```
 
-No hay carpetas de assets, `node_modules` ni build: es una SPA de archivo único.
+No hay `node_modules` ni build: son SPAs de archivo único. Ambas apps son independientes (no comparten CSS/JS en tiempo de ejecución) pero comparten datos leyendo/escribiendo el mismo `data/estado.json` de este repositorio vía la API de GitHub — ver la sección siguiente.
+
+## Checklist de salida/entrada de material
+
+En `CONTROL DE SALIDA ENTRADA EQUIPO/index.html` hay una segunda app (también un único HTML autocontenido, estética distinta a propósito) para marcar qué material **sale** (retirada) y **vuelve** (devuelta) en cada bolo, con responsable y notas por ítem. Está enlazada con esta:
+
+- Desde aquí: botón "📋 Control Material" en la barra superior.
+- Desde allí: botón "📦 Cargar material desde Producción Técnica", que lee `data/estado.json` de este mismo repo y deja elegir entre importar **todo el rider** o **el material ya asignado a una producción concreta** (`state.prods[i].material`) como la lista de items a controlar, en vez de mantener una lista de material a mano y separada.
+- Su propio guardado compartido (`data/control-material.json`) usa el mismo mecanismo de API de GitHub que el botón "☁ Guardar en GitHub" de esta app.
+
+Ver el README de esa carpeta para el detalle de su propio modelo de datos y estilo.
 
 ## Cómo usar
 

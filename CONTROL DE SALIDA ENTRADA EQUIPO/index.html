@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Control de Material · Artes Búho</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&display=swap">
+<style>
+  :root{
+    --cream:#F6F1E4;
+    --cream-dark:#EAE0C6;
+    --paper:#FCFAF3;
+    --cobalt:#1C3F8F;
+    --cobalt-deep:#122A63;
+    --gold:#B8862E;
+    --gold-light:#E7C875;
+    --ink:#2B2A28;
+    --ink-soft:#6B6558;
+    --line:#D8CBA8;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  }
+  .serif{font-family:'Playfair Display',Georgia,serif;}
+  .wrap{max-width:720px;margin:0 auto;padding:24px 16px 60px;}
+
+  .header{
+    background:var(--paper);
+    border:1.5px solid var(--cobalt);
+    border-radius:10px;
+    padding:20px;
+    margin-bottom:16px;
+  }
+  .header-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;}
+  .brand{font-size:11px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);}
+  .sync-dot{font-size:11px;color:var(--ink-soft);}
+  input.title-input{
+    width:100%;background:transparent;border:none;outline:none;
+    font-size:24px;font-weight:700;color:var(--cobalt-deep);margin-bottom:10px;
+  }
+  .header-row{display:flex;gap:8px;flex-wrap:wrap;}
+  .header-row input{
+    flex:1;min-width:110px;font-size:13px;padding:6px 8px;border-radius:6px;
+    border:1px solid var(--line);background:var(--cream);outline:none;
+  }
+
+  .summary{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:20px;}
+  .stat{background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:8px 4px;text-align:center;}
+  .stat b{display:block;font-size:18px;}
+  .stat span{font-size:9px;text-transform:uppercase;letter-spacing:.05em;color:var(--ink-soft);}
+
+  .category{background:var(--paper);border:1px solid var(--line);border-radius:10px;margin-bottom:12px;overflow:hidden;}
+  .cat-header{
+    width:100%;display:flex;align-items:center;gap:8px;justify-content:space-between;
+    background:var(--cobalt-deep);color:#fff;padding:12px 14px;border:none;cursor:pointer;
+  }
+  .cat-header input{
+    flex:1;background:transparent;border:none;outline:none;color:#fff;font-weight:600;
+    font-family:'Playfair Display',Georgia,serif;font-size:15px;
+  }
+  .cat-progress{font-size:11px;color:var(--gold-light);white-space:nowrap;}
+  .chevron{font-size:14px;}
+
+  .cat-body{padding:12px;border-top:1px dashed var(--line);display:flex;flex-direction:column;gap:8px;}
+
+  .item{background:var(--cream);border:1px solid var(--line);border-radius:8px;padding:10px 12px;}
+  .item-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px;}
+  .item-top input.name{flex:1;background:transparent;border:none;outline:none;font-weight:600;font-size:13.5px;}
+  .del-btn{background:none;border:none;color:var(--ink-soft);cursor:pointer;font-size:14px;opacity:.6;padding:0 2px;}
+  .del-btn:hover{opacity:1;}
+
+  .item-row{display:flex;align-items:center;gap:8px;margin-top:6px;flex-wrap:wrap;}
+  .qty-label{font-size:11px;color:var(--ink-soft);display:flex;align-items:center;gap:4px;}
+  .qty-label input{width:44px;font-size:12px;padding:2px 4px;border-radius:4px;border:1px solid var(--line);background:var(--paper);outline:none;}
+  .person-input{flex:1;min-width:100px;font-size:12px;padding:3px 6px;border-radius:4px;border:1px solid var(--line);background:var(--paper);outline:none;}
+  .notes-input{
+    width:100%;font-size:11px;padding:3px 6px;border-radius:4px;border:1px dashed var(--line);
+    background:transparent;color:var(--ink-soft);font-style:italic;outline:none;margin-top:6px;
+  }
+
+  .btn-row{display:flex;gap:8px;margin-top:8px;}
+  .toggle-btn{
+    flex:1;font-size:12px;font-weight:700;padding:7px 4px;border-radius:6px;cursor:pointer;
+    display:flex;align-items:center;justify-content:center;gap:4px;
+  }
+  .toggle-btn.retirada{border:1.5px solid var(--gold);color:var(--gold);background:transparent;}
+  .toggle-btn.retirada.active{background:var(--gold);color:#fff;border-color:var(--gold);}
+  .toggle-btn.devuelta{border:1.5px solid var(--cobalt);color:var(--cobalt);background:transparent;}
+  .toggle-btn.devuelta.active{background:var(--cobalt);color:#fff;border-color:var(--cobalt);}
+  .toggle-btn:disabled{opacity:.35;cursor:not-allowed;}
+
+  .stamps{display:flex;gap:6px;margin-top:6px;}
+  .stamp{
+    font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+    padding:1px 7px;border-radius:2px;transform:rotate(-4deg);display:inline-block;
+  }
+  .stamp.gold{border:1.5px solid var(--gold);color:var(--gold);}
+  .stamp.cobalt{border:1.5px solid var(--cobalt);color:var(--cobalt);}
+
+  .cat-footer{display:flex;justify-content:space-between;padding-top:2px;}
+  .link-btn{background:none;border:none;cursor:pointer;font-size:12px;font-weight:600;}
+  .link-btn.add{color:var(--cobalt);}
+  .link-btn.del{color:var(--ink-soft);}
+
+  .add-cat-btn{
+    width:100%;padding:10px;border-radius:8px;border:1.5px dashed var(--cobalt);
+    background:transparent;color:var(--cobalt);font-weight:600;font-size:13px;cursor:pointer;margin-top:4px;
+  }
+
+  .actions{display:flex;gap:8px;margin-top:20px;flex-wrap:wrap;}
+  .actions button{flex:1;min-width:130px;padding:9px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;}
+  .btn-primary{background:var(--cobalt-deep);color:#fff;border:none;}
+  .btn-outline{background:transparent;border:1px solid var(--ink-soft);color:var(--ink-soft);}
+  .btn-outline2{background:transparent;border:1px solid var(--cobalt);color:var(--cobalt);}
+
+  .footer-note{text-align:center;font-size:10px;color:var(--ink-soft);margin-top:18px;}
+  #import-file{display:none;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="header">
+    <div class="header-top">
+      <span class="brand">Artes Búho <a href="../AB_Produccion_Tecnica_Orquesta8_v4_1.html" style="color:var(--ink-soft);font-weight:600;text-transform:none;letter-spacing:0;margin-left:8px;text-decoration:underline">← Producción Técnica</a></span>
+      <span class="sync-dot" id="syncDot">guardado localmente</span>
+    </div>
+    <input class="title-input serif" id="titleInput">
+    <div class="header-row">
+      <input id="eventInput" placeholder="Evento / gira">
+      <input id="fechaInput" placeholder="Fecha" style="max-width:120px;">
+    </div>
+  </div>
+
+  <div class="summary" id="summary"></div>
+
+  <div id="categories"></div>
+
+  <button class="add-cat-btn" id="loadProdBtn" style="border-color:var(--gold);color:var(--gold)">📦 Cargar material desde Producción Técnica</button>
+  <button class="add-cat-btn" id="addCatBtn">+ Añadir categoría</button>
+
+  <div class="actions">
+    <button class="btn-primary" id="resetChecksBtn">↺ Reiniciar checks (nuevo evento)</button>
+    <button class="btn-outline" id="restoreBtn">Restaurar lista original</button>
+  </div>
+  <div class="actions">
+    <button class="btn-outline2" id="exportBtn">⬇ Exportar copia (JSON)</button>
+    <button class="btn-outline2" id="importBtn">⬆ Importar copia</button>
+    <input type="file" id="import-file" accept="application/json">
+  </div>
+  <div class="actions">
+    <button class="btn-outline2" id="saveGhBtn">☁ Guardar en GitHub (compartido)</button>
+    <button class="btn-outline" id="ghCfgBtn">⚙ Configurar GitHub</button>
+  </div>
+
+  <p class="footer-note">Artes Búho · datos guardados en este navegador (localStorage) — pulsa "Guardar en GitHub" para que el equipo vea el mismo estado desde otros dispositivos</p>
+</div>
+
+<div id="prodOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:50;align-items:center;justify-content:center">
+  <div style="background:var(--paper);border:1.5px solid var(--cobalt);border-radius:10px;padding:20px;width:420px;max-width:92vw;max-height:80vh;overflow:auto;display:flex;flex-direction:column;gap:10px">
+    <h3 class="serif" style="margin:0;color:var(--cobalt-deep)">Cargar desde Producción Técnica</h3>
+    <div id="prodOverlayBody" style="font-size:13px;color:var(--ink-soft)">Cargando…</div>
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <button id="prodOverlayClose" style="padding:7px 14px;border-radius:6px;border:1px solid var(--ink-soft);background:none;color:var(--ink-soft);cursor:pointer">Cerrar</button>
+    </div>
+  </div>
+</div>
+
+<div id="ghCfgOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:50;align-items:center;justify-content:center">
+  <div style="background:var(--paper);border:1.5px solid var(--cobalt);border-radius:10px;padding:18px;width:380px;max-width:92vw;display:flex;flex-direction:column;gap:10px">
+    <h3 class="serif" style="margin:0;color:var(--cobalt-deep)">Guardar en GitHub</h3>
+    <label style="font-size:11px;color:var(--ink-soft)">Repositorio (owner/repo)<input id="ghRepo" style="width:100%;margin-top:3px;padding:6px 8px;border-radius:6px;border:1px solid var(--line);background:var(--cream)"></label>
+    <label style="font-size:11px;color:var(--ink-soft)">Rama<input id="ghBranch" style="width:100%;margin-top:3px;padding:6px 8px;border-radius:6px;border:1px solid var(--line);background:var(--cream)"></label>
+    <label style="font-size:11px;color:var(--ink-soft)">Ruta del archivo<input id="ghPath" style="width:100%;margin-top:3px;padding:6px 8px;border-radius:6px;border:1px solid var(--line);background:var(--cream)"></label>
+    <label style="font-size:11px;color:var(--ink-soft)">Token de GitHub<input id="ghToken" type="password" autocomplete="off" style="width:100%;margin-top:3px;padding:6px 8px;border-radius:6px;border:1px solid var(--line);background:var(--cream)"></label>
+    <span style="font-size:9.5px;color:var(--ink-soft);line-height:1.5">El token se guarda solo en este navegador. Usa uno <b>fine-grained</b> limitado a este repositorio, con permiso solo "Contents: Read and write" y con fecha de caducidad. No lo uses en un ordenador compartido.</span>
+    <div style="display:flex;gap:8px;justify-content:flex-end">
+      <button id="ghCfgClose" style="padding:7px 14px;border-radius:6px;border:1px solid var(--ink-soft);background:none;color:var(--ink-soft);cursor:pointer">Cerrar</button>
+      <button id="ghCfgSave" style="padding:7px 14px;border-radius:6px;border:1px solid var(--cobalt);background:none;color:var(--cobalt);cursor:pointer;font-weight:600">Guardar configuración</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const STORAGE_KEY = "ab_control_material_v1";
+  const uid = () => Math.random().toString(36).slice(2,10);
+
+  function defaultData(){
+    return {
+      title: "Control de Material Técnico",
+      event: "",
+      fecha: "",
+      categories: [
+        { id: uid(), name: "Pies y soportes", items: [
+          item("Pie de micrófono cantante", 3),
+          item("Pie aéreo", 1),
+          item("Pie bombo", 1),
+          item("Pie caja", 1),
+          item("Agarre tom", 1),
+          item("Agarre goliat", 2),
+        ]},
+        { id: uid(), name: "Micrófonía", items: [
+          item("Shure SM57", 1),
+          item("Shure SM58", 1),
+          item("SE", 2),
+          item("Set batería completo AKG", 1, "", "incluye clamps y case"),
+        ]},
+        { id: uid(), name: "DI", items: [
+          item("DI bajo Behringer", 1),
+          item("DI guitarra", 1),
+        ]},
+        { id: uid(), name: "PA", items: [
+          item("JBL serie 815 (medios-agudos)", 2),
+        ]},
+        { id: uid(), name: "Monitores", items: [
+          item("Behringer P2", 1, "", "unidades según nº de músicos"),
+          item("Roland Cube Street", 1, "", "reserva por si falla monitor"),
+        ]},
+        { id: uid(), name: "Cableado y alimentación", items: [
+          item("Rulo 50m", 1),
+          item("Manguera larga", 4),
+          item("Cable alimentador", 4, "", "ajustar cantidad"),
+          item("Cable Canon (XLR) — Artes Búho", 17),
+          item("Cable Canon (XLR) — aporta Samu", 3, "Samu", "no es material propio, confirmar devolución igualmente"),
+          item("Regleta", 3),
+        ]},
+        { id: uid(), name: "Mesa de sonido", items: [
+          item("Mesa de sonido", 1, "Samu", "trae la suya propia"),
+        ]},
+        { id: uid(), name: "Extras recomendados", items: [
+          item("Cinta americana (gaffer)", 1),
+          item("Pinzas de repuesto para micro", 2),
+          item("Kit herramientas básico", 1, "", "destornilladores, alicates"),
+          item("Pilas de repuesto (AA/9V)", 4, "", "afinadores, in-ears si aplica"),
+          item("Linterna", 1),
+          item("Cable XLR corto de repuesto", 2, "", "patch mesa/DI"),
+          item("Espuma anti-pop de repuesto", 2),
+          item("Bridas / velcro para cables", 1, "", "paquete"),
+          item("Adaptador schuko / regulador", 1, "", "según sala"),
+        ]},
+      ],
+    };
+  }
+  function item(name, qty, person, notes){
+    return { id: uid(), name, qty: qty||1, person: person||"", retirada:false, devuelta:false, notes: notes||"" };
+  }
+
+  let data = load();
+  let openCats = {};
+  data.categories.forEach(c => openCats[c.id] = true);
+
+  function load(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(raw) return JSON.parse(raw);
+    }catch(e){}
+    return defaultData();
+  }
+  function save(){
+    try{
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      document.getElementById('syncDot').textContent = 'guardado';
+    }catch(e){
+      document.getElementById('syncDot').textContent = 'error al guardar';
+    }
+  }
+
+  const titleInput = document.getElementById('titleInput');
+  const eventInput = document.getElementById('eventInput');
+  const fechaInput = document.getElementById('fechaInput');
+
+  function renderHeader(){
+    titleInput.value = data.title;
+    eventInput.value = data.event;
+    fechaInput.value = data.fecha;
+  }
+  titleInput.addEventListener('input', e => { data.title = e.target.value; save(); });
+  eventInput.addEventListener('input', e => { data.event = e.target.value; save(); });
+  fechaInput.addEventListener('input', e => { data.fecha = e.target.value; save(); });
+
+  function renderSummary(){
+    let total=0, ret=0, dev=0;
+    data.categories.forEach(c => c.items.forEach(it => {
+      total++; if(it.retirada) ret++; if(it.devuelta) dev++;
+    }));
+    const pend = ret - dev;
+    const el = document.getElementById('summary');
+    el.innerHTML = `
+      <div class="stat"><b style="color:var(--cobalt-deep)">${total}</b><span>Total</span></div>
+      <div class="stat"><b style="color:var(--gold)">${ret}</b><span>Retirado</span></div>
+      <div class="stat"><b style="color:var(--cobalt)">${dev}</b><span>Devuelto</span></div>
+      <div class="stat"><b style="color:${pend>0?'#B23B3B':'var(--ink-soft)'}">${pend}</b><span>En calle</span></div>
+    `;
+  }
+
+  function renderCategories(){
+    const wrap = document.getElementById('categories');
+    wrap.innerHTML = '';
+    data.categories.forEach(cat => {
+      const catTotal = cat.items.length;
+      const catRet = cat.items.filter(i=>i.retirada).length;
+      const catDev = cat.items.filter(i=>i.devuelta).length;
+      const open = !!openCats[cat.id];
+
+      const catEl = document.createElement('div');
+      catEl.className = 'category';
+
+      const header = document.createElement('button');
+      header.className = 'cat-header';
+      header.innerHTML = `
+        <input value="${escapeAttr(cat.name)}" data-cat="${cat.id}" class="cat-name-input">
+        <span class="cat-progress">${catRet}/${catTotal} retirado · ${catDev}/${catTotal} devuelto</span>
+        <span class="chevron">${open ? '▲' : '▼'}</span>
+      `;
+      header.addEventListener('click', (e) => {
+        if(e.target.classList.contains('cat-name-input')) return;
+        openCats[cat.id] = !openCats[cat.id];
+        renderCategories();
+      });
+      header.querySelector('.cat-name-input').addEventListener('click', e => e.stopPropagation());
+      header.querySelector('.cat-name-input').addEventListener('input', e => {
+        cat.name = e.target.value; save();
+      });
+      catEl.appendChild(header);
+
+      if(open){
+        const body = document.createElement('div');
+        body.className = 'cat-body';
+        cat.items.forEach(it => body.appendChild(renderItem(cat, it)));
+
+        const footer = document.createElement('div');
+        footer.className = 'cat-footer';
+        footer.innerHTML = `
+          <button class="link-btn add">+ Añadir material</button>
+          <button class="link-btn del">Eliminar categoría</button>
+        `;
+        footer.querySelector('.add').addEventListener('click', () => {
+          cat.items.push(item('Nuevo material', 1));
+          save(); renderCategories();
+        });
+        footer.querySelector('.del').addEventListener('click', () => {
+          if(!confirm('¿Eliminar esta categoría y todo su material?')) return;
+          data.categories = data.categories.filter(c => c.id !== cat.id);
+          save(); renderCategories();
+        });
+        body.appendChild(footer);
+        catEl.appendChild(body);
+      }
+      wrap.appendChild(catEl);
+    });
+  }
+
+  function renderItem(cat, it){
+    const el = document.createElement('div');
+    el.className = 'item';
+    el.innerHTML = `
+      <div class="item-top">
+        <input class="name" value="${escapeAttr(it.name)}">
+        <button class="del-btn" title="Eliminar">✕</button>
+      </div>
+      <div class="item-row">
+        <label class="qty-label">Cant. <input type="number" min="0" class="qty-input" value="${it.qty}"></label>
+        <input class="person-input" placeholder="Persona responsable" value="${escapeAttr(it.person)}">
+      </div>
+      <input class="notes-input" placeholder="Notas..." value="${escapeAttr(it.notes)}">
+      <div class="btn-row">
+        <button class="toggle-btn retirada ${it.retirada?'active':''}">${it.retirada ? '✓ RETIRADO' : 'Marcar retirada'}</button>
+        <button class="toggle-btn devuelta ${it.devuelta?'active':''}" ${it.retirada?'':'disabled'}>${it.devuelta ? '✓ DEVUELTO' : 'Marcar devuelta'}</button>
+      </div>
+      <div class="stamps">
+        ${it.retirada ? '<span class="stamp gold">Retirado</span>' : ''}
+        ${it.devuelta ? '<span class="stamp cobalt">Devuelto</span>' : ''}
+      </div>
+    `;
+    el.querySelector('.name').addEventListener('input', e => { it.name = e.target.value; save(); });
+    el.querySelector('.qty-input').addEventListener('input', e => { it.qty = Number(e.target.value); save(); });
+    el.querySelector('.person-input').addEventListener('input', e => { it.person = e.target.value; save(); });
+    el.querySelector('.notes-input').addEventListener('input', e => { it.notes = e.target.value; save(); });
+    el.querySelector('.del-btn').addEventListener('click', () => {
+      cat.items = cat.items.filter(i => i.id !== it.id);
+      save(); renderAll();
+    });
+    el.querySelector('.toggle-btn.retirada').addEventListener('click', () => {
+      it.retirada = !it.retirada;
+      if(!it.retirada) it.devuelta = false;
+      save(); renderAll();
+    });
+    el.querySelector('.toggle-btn.devuelta').addEventListener('click', () => {
+      if(!it.retirada) return;
+      it.devuelta = !it.devuelta;
+      save(); renderAll();
+    });
+    return el;
+  }
+
+  function escapeAttr(s){
+    return String(s).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+  }
+
+  function renderAll(){
+    renderHeader();
+    renderSummary();
+    renderCategories();
+  }
+
+  document.getElementById('addCatBtn').addEventListener('click', () => {
+    const c = { id: uid(), name: 'Nueva categoría', items: [] };
+    data.categories.push(c);
+    openCats[c.id] = true;
+    save(); renderAll();
+  });
+
+  document.getElementById('resetChecksBtn').addEventListener('click', () => {
+    if(!confirm('Esto pone a cero todos los check de retirada y devolución. ¿Continuar?')) return;
+    data.categories.forEach(c => c.items.forEach(it => { it.retirada=false; it.devuelta=false; }));
+    save(); renderAll();
+  });
+
+  document.getElementById('restoreBtn').addEventListener('click', () => {
+    if(!confirm('Esto restaura la lista original de material y borra tus cambios. ¿Continuar?')) return;
+    data = defaultData();
+    openCats = {};
+    data.categories.forEach(c => openCats[c.id] = true);
+    save(); renderAll();
+  });
+
+  document.getElementById('exportBtn').addEventListener('click', () => {
+    const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `control-material-${(data.event||'artesbuho').replace(/\s+/g,'_')}.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  document.getElementById('importBtn').addEventListener('click', () => {
+    document.getElementById('import-file').click();
+  });
+  document.getElementById('import-file').addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try{
+        const parsed = JSON.parse(reader.result);
+        if(!parsed.categories) throw new Error('formato inválido');
+        data = parsed;
+        openCats = {};
+        data.categories.forEach(c => openCats[c.id] = true);
+        save(); renderAll();
+      }catch(err){
+        alert('No se pudo importar el archivo: ' + err.message);
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+  });
+
+  /* ================== INTEGRACIÓN CON PRODUCCIÓN TÉCNICA ================== */
+  const PROD_REPO = 'artesbuhooficial-max/tecnica-orquesta8';
+  const PROD_PATH = 'data/estado.json';
+  const PROD_BRANCH = 'master';
+
+  function utf8ToB64(str){
+    const bytes = new TextEncoder().encode(str);
+    let bin = ''; bytes.forEach(b => bin += String.fromCharCode(b));
+    return btoa(bin);
+  }
+  function b64ToUtf8(b64){
+    const bin = atob(b64.replace(/\n/g,''));
+    const bytes = Uint8Array.from(bin, c => c.charCodeAt(0));
+    return new TextDecoder().decode(bytes);
+  }
+
+  async function fetchProdState(){
+    const api = `https://api.github.com/repos/${PROD_REPO}/contents/${PROD_PATH}?ref=${PROD_BRANCH}`;
+    const r = await fetch(api, {headers:{'Accept':'application/vnd.github+json'}});
+    if(!r.ok) throw new Error(r.status===404
+      ? 'Aún no se ha guardado ningún proyecto desde Producción Técnica (usa allí el botón "☁ Guardar en GitHub" primero).'
+      : 'HTTP '+r.status);
+    const j = await r.json();
+    return JSON.parse(b64ToUtf8(j.content));
+  }
+
+  function riderToCategories(rider){
+    return (rider||[]).map(cat => ({
+      id: uid(),
+      name: cat.cat,
+      items: (cat.items||[]).map(it => item(
+        it.n, it.q||1, '',
+        [it.note, it.d==='consultar' ? 'consultar disponibilidad' : ''].filter(Boolean).join(' · ')
+      ))
+    }));
+  }
+  function prodMaterialToCategories(prod){
+    return [{
+      id: uid(),
+      name: 'Material asignado · ' + prod.nombre,
+      items: (prod.material||[]).map(m => item(m.n, m.q||1))
+    }];
+  }
+
+  const loadProdBtn = document.getElementById('loadProdBtn');
+  const prodOverlay = document.getElementById('prodOverlay');
+  const prodOverlayBody = document.getElementById('prodOverlayBody');
+
+  loadProdBtn.addEventListener('click', openProdOverlay);
+  document.getElementById('prodOverlayClose').addEventListener('click', () => { prodOverlay.style.display = 'none'; });
+
+  async function openProdOverlay(){
+    prodOverlay.style.display = 'flex';
+    prodOverlayBody.textContent = 'Cargando…';
+    try{
+      const remote = await fetchProdState();
+      const rider = remote.rider || [];
+      const prods = remote.prods || [];
+      let html = `<button class="add-cat-btn" data-pick="rider" style="margin-top:0">📋 Todo el inventario (${rider.reduce((a,c)=>a+(c.items||[]).length,0)} referencias)</button>`;
+      if(prods.length){
+        html += `<div style="font-size:11px;color:var(--ink-soft);margin:10px 0 4px;text-transform:uppercase;letter-spacing:.06em">O el material de una producción concreta:</div>`;
+        prods.forEach((p, i) => {
+          html += `<button class="add-cat-btn" data-pick="prod" data-i="${i}" style="margin-top:6px;border-color:var(--cobalt);color:var(--cobalt)">${escapeAttr(p.nombre)} — ${escapeAttr(p.fecha||'sin fecha')} (${(p.material||[]).length} refs)</button>`;
+        });
+      }
+      prodOverlayBody.innerHTML = html;
+      prodOverlayBody.querySelectorAll('[data-pick="rider"]').forEach(b => b.addEventListener('click', () => applyProdImport({kind:'rider', rider})));
+      prodOverlayBody.querySelectorAll('[data-pick="prod"]').forEach(b => b.addEventListener('click', () => applyProdImport({kind:'prod', prod: prods[+b.dataset.i]})));
+    }catch(e){
+      prodOverlayBody.innerHTML = `<div style="color:#B23B3B">${escapeAttr(e.message)}</div>`;
+    }
+  }
+
+  function applyProdImport(sel){
+    const label = sel.kind==='rider' ? 'todo el inventario' : `el material de «${sel.prod.nombre}»`;
+    if(!confirm(`Esto reemplaza la lista de material actual por ${label} (se pierden los checks de retirada/devuelta actuales). ¿Continuar?`)) return;
+    data.categories = sel.kind==='rider' ? riderToCategories(sel.rider) : prodMaterialToCategories(sel.prod);
+    if(sel.kind==='prod'){
+      data.event = sel.prod.nombre;
+      data.fecha = sel.prod.fecha || data.fecha;
+    }
+    openCats = {}; data.categories.forEach(c => openCats[c.id] = true);
+    prodOverlay.style.display = 'none';
+    save(); renderAll();
+  }
+
+  /* ================== GUARDADO COMPARTIDO EN GITHUB ================== */
+  let ghCfg = {repo: PROD_REPO, branch: PROD_BRANCH, path: 'data/control-material.json', token: ''};
+  function loadGhCfg(){
+    try{ const s = JSON.parse(localStorage.getItem('ab_cm_ghcfg') || 'null'); if(s) ghCfg = {...ghCfg, ...s}; }catch(e){}
+  }
+  function openGhCfg(){
+    document.getElementById('ghRepo').value = ghCfg.repo;
+    document.getElementById('ghBranch').value = ghCfg.branch;
+    document.getElementById('ghPath').value = ghCfg.path;
+    document.getElementById('ghToken').value = ghCfg.token;
+    document.getElementById('ghCfgOverlay').style.display = 'flex';
+  }
+  function closeGhCfg(){ document.getElementById('ghCfgOverlay').style.display = 'none'; }
+  function saveGhCfg(){
+    ghCfg.repo = document.getElementById('ghRepo').value.trim() || PROD_REPO;
+    ghCfg.branch = document.getElementById('ghBranch').value.trim() || PROD_BRANCH;
+    ghCfg.path = document.getElementById('ghPath').value.trim() || 'data/control-material.json';
+    ghCfg.token = document.getElementById('ghToken').value.trim();
+    try{ localStorage.setItem('ab_cm_ghcfg', JSON.stringify(ghCfg)); }catch(e){}
+    closeGhCfg();
+  }
+  async function saveToGitHub(){
+    if(!ghCfg.token){ openGhCfg(); return; }
+    const btn = document.getElementById('saveGhBtn'); const orig = btn.textContent;
+    btn.disabled = true; btn.textContent = '☁ Guardando…';
+    try{
+      const api = `https://api.github.com/repos/${ghCfg.repo}/contents/${ghCfg.path}`;
+      const headers = {'Authorization':'Bearer '+ghCfg.token, 'Accept':'application/vnd.github+json', 'X-GitHub-Api-Version':'2022-11-28'};
+      let sha = null;
+      const cur = await fetch(`${api}?ref=${encodeURIComponent(ghCfg.branch)}`, {headers});
+      if(cur.status===200){ sha = (await cur.json()).sha; }
+      else if(cur.status!==404){ const j = await cur.json().catch(()=>({})); throw new Error(j.message || ('HTTP '+cur.status)); }
+      const body = {message:'Actualizar control de material · '+new Date().toISOString().slice(0,16).replace('T',' '),
+        content: utf8ToB64(JSON.stringify(data, null, 1)), branch: ghCfg.branch};
+      if(sha) body.sha = sha;
+      const put = await fetch(api, {method:'PUT', headers:{...headers,'Content-Type':'application/json'}, body: JSON.stringify(body)});
+      const pj = await put.json();
+      if(!put.ok) throw new Error(pj.message || ('HTTP '+put.status));
+      document.getElementById('syncDot').textContent = '✓ guardado en GitHub';
+      btn.textContent = '✓ Guardado'; setTimeout(() => { btn.textContent = orig; }, 2500);
+    }catch(e){
+      alert('No se pudo guardar en GitHub: ' + e.message + '\n\nComprueba el token (permiso "Contents: Read and write") y que repo/rama/ruta sean correctos.');
+      btn.textContent = orig;
+    }
+    btn.disabled = false;
+  }
+  async function loadRemoteChecklist(){
+    try{
+      const api = `https://api.github.com/repos/${ghCfg.repo}/contents/${ghCfg.path}`;
+      const r = await fetch(`${api}?ref=${encodeURIComponent(ghCfg.branch)}`, {headers:{'Accept':'application/vnd.github+json'}});
+      if(!r.ok) return false;
+      const j = await r.json();
+      const parsed = JSON.parse(b64ToUtf8(j.content));
+      if(!parsed || !Array.isArray(parsed.categories)) return false;
+      data = parsed;
+      openCats = {}; data.categories.forEach(c => openCats[c.id] = true);
+      return true;
+    }catch(e){ return false; }
+  }
+
+  document.getElementById('saveGhBtn').addEventListener('click', saveToGitHub);
+  document.getElementById('ghCfgBtn').addEventListener('click', openGhCfg);
+  document.getElementById('ghCfgClose').addEventListener('click', closeGhCfg);
+  document.getElementById('ghCfgSave').addEventListener('click', saveGhCfg);
+
+  loadGhCfg();
+  renderAll();
+  loadRemoteChecklist().then(ok => {
+    if(ok){ renderAll(); document.getElementById('syncDot').textContent = 'cargado desde GitHub (compartido)'; }
+  });
+})();
+</script>
+</body>
+</html>
