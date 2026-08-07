@@ -23,7 +23,7 @@
       {
        "id": "n-i-pie-aereo",
        "name": "Pie aéreo",
-       "qty": 1,
+       "qty": 2,
        "person": "",
        "retirada": false,
        "devuelta": false,
@@ -50,16 +50,7 @@
       {
        "id": "n-i-agarre-tom",
        "name": "Agarre tom",
-       "qty": 1,
-       "person": "",
-       "retirada": false,
-       "devuelta": false,
-       "notes": ""
-      },
-      {
-       "id": "n-i-agarre-goliat",
-       "name": "Agarre goliat",
-       "qty": 2,
+       "qty": 3,
        "person": "",
        "retirada": false,
        "devuelta": false,
@@ -333,7 +324,7 @@
        "name": "Pie de micrófono cantante",
        "qty": 3,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -342,7 +333,7 @@
        "name": "Pie aéreo",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -351,7 +342,7 @@
        "name": "Pie bombo",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -360,23 +351,14 @@
        "name": "Pie caja",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
       {
        "id": "r-i-agarre-tom",
        "name": "Agarre tom",
-       "qty": 1,
-       "person": "",
-       "retirada": false,
-       "devuelta": false,
-       "notes": ""
-      },
-      {
-       "id": "r-i-agarre-goliat",
-       "name": "Agarre goliat",
-       "qty": 2,
+       "qty": 3,
        "person": "",
        "retirada": false,
        "devuelta": false,
@@ -393,7 +375,7 @@
        "name": "Shure SM57",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -402,7 +384,7 @@
        "name": "Shure SM58",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
