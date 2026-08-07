@@ -460,7 +460,7 @@
        "name": "Set batería completo AKG",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": "incluye clamps y case"
       }
@@ -534,15 +534,6 @@
        "notes": ""
       },
       {
-       "id": "r-i-manguera",
-       "name": "Manguera larga",
-       "qty": 4,
-       "person": "",
-       "retirada": false,
-       "devuelta": false,
-       "notes": ""
-      },
-      {
        "id": "r-i-cablealim",
        "name": "Cable alimentador",
        "qty": 14,
@@ -610,21 +601,22 @@
     {
      "id": "r-cat-mesa",
      "name": "Mesa de sonido",
-     "items": []
-    },
-    {
-     "id": "r-cat-extras",
-     "name": "Extras recomendados",
      "items": [
       {
-       "id": "r-i-gaffer",
-       "name": "Cinta americana (gaffer)",
+       "id": "fi34dh5v",
+       "name": "X32",
        "qty": 1,
        "person": "",
        "retirada": false,
        "devuelta": false,
        "notes": ""
-      },
+      }
+     ]
+    },
+    {
+     "id": "r-cat-extras",
+     "name": "Extras recomendados",
+     "items": [
       {
        "id": "r-i-pinzas",
        "name": "Pinzas de repuesto para micro",
@@ -651,42 +643,6 @@
        "retirada": false,
        "devuelta": false,
        "notes": "afinadores, in-ears si aplica"
-      },
-      {
-       "id": "r-i-linterna",
-       "name": "Linterna",
-       "qty": 1,
-       "person": "",
-       "retirada": false,
-       "devuelta": false,
-       "notes": ""
-      },
-      {
-       "id": "r-i-antipop",
-       "name": "Espuma anti-pop de repuesto",
-       "qty": 2,
-       "person": "",
-       "retirada": false,
-       "devuelta": false,
-       "notes": ""
-      },
-      {
-       "id": "r-i-bridas",
-       "name": "Bridas / velcro para cables",
-       "qty": 1,
-       "person": "",
-       "retirada": false,
-       "devuelta": false,
-       "notes": "paquete"
-      },
-      {
-       "id": "r-i-schuko",
-       "name": "Adaptador schuko / regulador",
-       "qty": 1,
-       "person": "",
-       "retirada": false,
-       "devuelta": false,
-       "notes": "según sala"
       }
      ]
     },
@@ -727,11 +683,11 @@
       {
        "id": "tg19qefv",
        "name": "Trus par Led",
-       "qty": 2,
+       "qty": 3,
        "person": "",
        "retirada": true,
        "devuelta": false,
-       "notes": ""
+       "notes": "2 con funda 1 sin funda"
       }
      ]
     },
