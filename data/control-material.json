@@ -94,7 +94,7 @@
        "name": "SE",
        "qty": 1,
        "person": "",
-       "retirada": true,
+       "retirada": false,
        "devuelta": false,
        "notes": ""
       },
@@ -103,7 +103,7 @@
        "name": "Set batería completo Senheisser ",
        "qty": 1,
        "person": "",
-       "retirada": true,
+       "retirada": false,
        "devuelta": false,
        "notes": "incluye clamps y case"
       }
@@ -135,23 +135,14 @@
     },
     {
      "id": "n-cat-pa",
-     "name": "Monitor Suelo",
+     "name": "PA",
      "items": [
       {
        "id": "n-i-jbl815",
-       "name": "Makie",
+       "name": "JBL serie 815 (medios-agudos)",
        "qty": 2,
        "person": "",
-       "retirada": true,
-       "devuelta": false,
-       "notes": ""
-      },
-      {
-       "id": "xsk8s9or",
-       "name": "JBL ",
-       "qty": 2,
-       "person": "",
-       "retirada": true,
+       "retirada": false,
        "devuelta": false,
        "notes": ""
       }
@@ -224,9 +215,9 @@
       {
        "id": "n-i-xlr",
        "name": "Cable Canon (XLR) — Artes Búho",
-       "qty": 25,
+       "qty": 23,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -240,18 +231,18 @@
        "notes": ""
       },
       {
-       "id": "c5h76sxl",
-       "name": "XLR largo ",
-       "qty": 5,
+       "id": "8mi10wcx",
+       "name": "Rulo 25m",
+       "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
       {
-       "id": "yg1uu53t",
-       "name": "Rulo 25m",
-       "qty": 1,
+       "id": "qbpnq6wq",
+       "name": "Rulo RJ45",
+       "qty": 2,
        "person": "",
        "retirada": true,
        "devuelta": false,
@@ -599,7 +590,7 @@
       {
        "id": "r-i-regleta",
        "name": "Regleta",
-       "qty": 9,
+       "qty": 8,
        "person": "",
        "retirada": true,
        "devuelta": false,
