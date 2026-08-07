@@ -160,15 +160,6 @@
        "retirada": false,
        "devuelta": false,
        "notes": "unidades según nº de músicos"
-      },
-      {
-       "id": "n-i-roland",
-       "name": "Roland Cube Street",
-       "qty": 1,
-       "person": "",
-       "retirada": false,
-       "devuelta": false,
-       "notes": "reserva por si falla monitor"
       }
      ]
     },
@@ -235,7 +226,17 @@
     {
      "id": "n-cat-mesa",
      "name": "Mesa de sonido",
-     "items": []
+     "items": [
+      {
+       "id": "vrvo9txf",
+       "name": "X32 Compact",
+       "qty": 1,
+       "person": "",
+       "retirada": false,
+       "devuelta": false,
+       "notes": ""
+      }
+     ]
     },
     {
      "id": "n-cat-extras",
@@ -677,5 +678,5 @@
    ]
   }
  ],
- "activeId": "rock0001"
+ "activeId": "neon0001"
 }
