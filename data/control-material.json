@@ -535,6 +535,33 @@
        "retirada": true,
        "devuelta": false,
        "notes": ""
+      },
+      {
+       "id": "hdjs8njj",
+       "name": "Flycase Paños led ",
+       "qty": 2,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      },
+      {
+       "id": "wa2qr74m",
+       "name": "Flycase Cajetín X32",
+       "qty": 1,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      },
+      {
+       "id": "kz8ghlzn",
+       "name": "Flycase ",
+       "qty": 1,
+       "person": "",
+       "retirada": false,
+       "devuelta": false,
+       "notes": ""
       }
      ]
     }
