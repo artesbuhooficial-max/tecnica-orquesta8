@@ -536,9 +536,9 @@
       {
        "id": "r-i-cablealim",
        "name": "Cable alimentador",
-       "qty": 14,
+       "qty": 18,
        "person": "",
-       "retirada": true,
+       "retirada": false,
        "devuelta": false,
        "notes": ""
       },
@@ -554,7 +554,7 @@
       {
        "id": "r-i-regleta",
        "name": "Regleta",
-       "qty": 6,
+       "qty": 8,
        "person": "",
        "retirada": true,
        "devuelta": false,
@@ -585,7 +585,7 @@
        "person": "",
        "retirada": true,
        "devuelta": false,
-       "notes": "Falta 1"
+       "notes": ""
       },
       {
        "id": "1xmcw3i2",
