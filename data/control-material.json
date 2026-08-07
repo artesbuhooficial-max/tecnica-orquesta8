@@ -420,6 +420,123 @@
        "notes": ""
       }
      ]
+    },
+    {
+     "id": "2hv997wy",
+     "name": "Truss",
+     "items": [
+      {
+       "id": "fsyifu99",
+       "name": "Truss ",
+       "qty": 8,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      },
+      {
+       "id": "smmtug01",
+       "name": "Barras angel cableado ",
+       "qty": 4,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": "2 adelante 2 atrás "
+      },
+      {
+       "id": "asly0hf0",
+       "name": "Jennies ",
+       "qty": 4,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      }
+     ]
+    },
+    {
+     "id": "4nmmq01w",
+     "name": "Luminaria",
+     "items": [
+      {
+       "id": "gzoimtj8",
+       "name": "Beam 7R",
+       "qty": 6,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      },
+      {
+       "id": "tb9r7e0s",
+       "name": "Wash AB",
+       "qty": 4,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      },
+      {
+       "id": "7b2cpgj1",
+       "name": "Wash Angel ",
+       "qty": 2,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      },
+      {
+       "id": "syf06qk3",
+       "name": "Cegadoras",
+       "qty": 2,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      },
+      {
+       "id": "wem6xzgv",
+       "name": "3 Palm 5",
+       "qty": 1,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      }
+     ]
+    },
+    {
+     "id": "yke9lyjd",
+     "name": "Flycases",
+     "items": [
+      {
+       "id": "n70wraw9",
+       "name": "Flycase Corriente General",
+       "qty": 1,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      },
+      {
+       "id": "vxhui0fb",
+       "name": "Flycase Palm 5, Regletas IEC",
+       "qty": 1,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      },
+      {
+       "id": "4t6e80r8",
+       "name": "Flycase Iluminación + Rj45 + DMX",
+       "qty": 1,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      }
+     ]
     }
    ]
   },
