@@ -574,9 +574,9 @@
        "name": "XLR Largos ",
        "qty": 6,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
-       "notes": "Falta 2"
+       "notes": "Falta 1"
       },
       {
        "id": "2inqmih7",
@@ -704,6 +704,21 @@
        "id": "8xw3t1lb",
        "name": "Rulo 25m",
        "qty": 1,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      }
+     ]
+    },
+    {
+     "id": "glfaf95x",
+     "name": "Luminaria",
+     "items": [
+      {
+       "id": "tg19qefv",
+       "name": "Trus par Led",
+       "qty": 2,
        "person": "",
        "retirada": true,
        "devuelta": false,
