@@ -502,6 +502,15 @@
        "retirada": false,
        "devuelta": false,
        "notes": ""
+      },
+      {
+       "id": "h8eb54kz",
+       "name": "Sub Grave",
+       "qty": 1,
+       "person": "",
+       "retirada": false,
+       "devuelta": false,
+       "notes": ""
       }
      ]
     },
@@ -601,7 +610,17 @@
     {
      "id": "r-cat-mesa",
      "name": "Mesa de sonido",
-     "items": []
+     "items": [
+      {
+       "id": "tf70io7p",
+       "name": "X32 ",
+       "qty": 1,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      }
+     ]
     },
     {
      "id": "r-cat-extras",
