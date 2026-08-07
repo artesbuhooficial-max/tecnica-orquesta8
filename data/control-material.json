@@ -556,10 +556,10 @@
       },
       {
        "id": "kz8ghlzn",
-       "name": "Flycase ",
+       "name": "Flycase Line Array ",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
