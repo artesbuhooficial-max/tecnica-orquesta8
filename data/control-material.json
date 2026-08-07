@@ -440,7 +440,7 @@
       {
        "id": "r-i-sm58",
        "name": "Shure SM58",
-       "qty": 1,
+       "qty": 2,
        "person": "",
        "retirada": true,
        "devuelta": false,
@@ -451,7 +451,7 @@
        "name": "SE",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -475,7 +475,7 @@
        "name": "DI bajo Behringer",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -484,7 +484,7 @@
        "name": "DI guitarra",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
@@ -499,16 +499,7 @@
        "name": "JBL serie 815 (medios-agudos)",
        "qty": 2,
        "person": "",
-       "retirada": true,
-       "devuelta": false,
-       "notes": ""
-      },
-      {
-       "id": "h8eb54kz",
-       "name": "Sub Grave",
-       "qty": 1,
-       "person": "",
-       "retirada": true,
+       "retirada": false,
        "devuelta": false,
        "notes": ""
       }
@@ -558,16 +549,16 @@
        "person": "",
        "retirada": true,
        "devuelta": false,
-       "notes": "Falta 1"
+       "notes": ""
       },
       {
        "id": "r-i-xlr",
        "name": "Cable Canon (XLR) — Artes Búho",
        "qty": 22,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
-       "notes": "Falta 1"
+       "notes": ""
       },
       {
        "id": "r-i-regleta",
@@ -601,26 +592,25 @@
        "name": "Alargos",
        "qty": 4,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": "Falta 1"
-      }
-     ]
-    },
-    {
-     "id": "r-cat-mesa",
-     "name": "Mesa de sonido",
-     "items": [
+      },
       {
-       "id": "tf70io7p",
-       "name": "X32 ",
-       "qty": 1,
+       "id": "1xmcw3i2",
+       "name": "DMX",
+       "qty": 2,
        "person": "",
        "retirada": true,
        "devuelta": false,
        "notes": ""
       }
      ]
+    },
+    {
+     "id": "r-cat-mesa",
+     "name": "Mesa de sonido",
+     "items": []
     },
     {
      "id": "r-cat-extras",
@@ -709,24 +699,6 @@
        "name": "Ctac",
        "qty": 1,
        "person": "Ctac",
-       "retirada": false,
-       "devuelta": false,
-       "notes": ""
-      },
-      {
-       "id": "793cqynq",
-       "name": "Cajetín truss luces PowerCon",
-       "qty": 1,
-       "person": "",
-       "retirada": true,
-       "devuelta": false,
-       "notes": ""
-      },
-      {
-       "id": "1f9t16bi",
-       "name": "Cable Shuko + PowerCon",
-       "qty": 1,
-       "person": "",
        "retirada": true,
        "devuelta": false,
        "notes": ""
