@@ -197,7 +197,7 @@
       {
        "id": "n-i-xlr",
        "name": "Cable Canon (XLR) — Artes Búho",
-       "qty": 22,
+       "qty": 25,
        "person": "",
        "retirada": false,
        "devuelta": false,
@@ -333,6 +333,21 @@
        "id": "03mu3rd0",
        "name": "Destornillador estrella ",
        "qty": 1,
+       "person": "",
+       "retirada": false,
+       "devuelta": false,
+       "notes": ""
+      }
+     ]
+    },
+    {
+     "id": "mdnq1hou",
+     "name": "RJ45",
+     "items": [
+      {
+       "id": "u0nac4a5",
+       "name": "Rulo RJ45",
+       "qty": 2,
        "person": "",
        "retirada": false,
        "devuelta": false,
