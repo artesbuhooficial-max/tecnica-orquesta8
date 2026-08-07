@@ -14,9 +14,9 @@
       {
        "id": "n-i-pie-cant",
        "name": "Pie de micrófono cantante",
-       "qty": 3,
+       "qty": 4,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -25,7 +25,7 @@
        "name": "Pie aéreo",
        "qty": 2,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -34,7 +34,7 @@
        "name": "Pie bombo",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -43,7 +43,7 @@
        "name": "Pie caja",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -51,6 +51,15 @@
        "id": "n-i-agarre-tom",
        "name": "Agarre tom",
        "qty": 3,
+       "person": "",
+       "retirada": false,
+       "devuelta": false,
+       "notes": ""
+      },
+      {
+       "id": "gdr2ckoa",
+       "name": "Pie Spare",
+       "qty": 1,
        "person": "",
        "retirada": false,
        "devuelta": false,
@@ -303,6 +312,21 @@
        "retirada": false,
        "devuelta": false,
        "notes": "según sala"
+      }
+     ]
+    },
+    {
+     "id": "2w6d6784",
+     "name": "Nueva categoría",
+     "items": [
+      {
+       "id": "03mu3rd0",
+       "name": "Destornillador estrella ",
+       "qty": 1,
+       "person": "",
+       "retirada": false,
+       "devuelta": false,
+       "notes": ""
       }
      ]
     }
@@ -617,5 +641,5 @@
    ]
   }
  ],
- "activeId": "rock0001"
+ "activeId": "neon0001"
 }
