@@ -449,7 +449,7 @@
       {
        "id": "r-i-se",
        "name": "SE",
-       "qty": 2,
+       "qty": 1,
        "person": "",
        "retirada": false,
        "devuelta": false,
@@ -512,20 +512,11 @@
       {
        "id": "r-i-p2",
        "name": "Behringer P2",
-       "qty": 2,
+       "qty": 4,
        "person": "",
        "retirada": false,
        "devuelta": false,
        "notes": "unidades según nº de músicos"
-      },
-      {
-       "id": "r-i-roland",
-       "name": "Roland Cube Street",
-       "qty": 1,
-       "person": "",
-       "retirada": false,
-       "devuelta": false,
-       "notes": "reserva por si falla monitor"
       }
      ]
     },
@@ -693,5 +684,5 @@
    ]
   }
  ],
- "activeId": "neon0001"
+ "activeId": "rock0001"
 }
