@@ -259,7 +259,7 @@
        "name": "X32 Compact",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -319,7 +319,7 @@
        "name": "Bridas / velcro para cables",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": "paquete"
       }
@@ -337,12 +337,30 @@
        "retirada": true,
        "devuelta": false,
        "notes": ""
+      },
+      {
+       "id": "t0ylbjkv",
+       "name": "Bolones ",
+       "qty": 15,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      },
+      {
+       "id": "gdorzwvk",
+       "name": "Tornillos tuercas sujeciones",
+       "qty": 20,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
       }
      ]
     },
     {
      "id": "mdnq1hou",
-     "name": "RJ45",
+     "name": "Rulos Rj45",
      "items": [
       {
        "id": "u0nac4a5",
@@ -372,6 +390,30 @@
        "id": "2mc71e9e",
        "name": "SUB ",
        "qty": 3,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      }
+     ]
+    },
+    {
+     "id": "fsua04ss",
+     "name": "Pantalla Led Telon",
+     "items": [
+      {
+       "id": "9t0njeey",
+       "name": "Palo Telón Led ",
+       "qty": 4,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      },
+      {
+       "id": "e5xzsyxt",
+       "name": "Cables RJ45 conectores Telón ",
+       "qty": 9,
        "person": "",
        "retirada": true,
        "devuelta": false,
