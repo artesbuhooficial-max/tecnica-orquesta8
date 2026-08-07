@@ -115,19 +115,19 @@
      "items": [
       {
        "id": "n-i-dibajo",
-       "name": "DI bajo Behringer",
-       "qty": 1,
+       "name": "DI Doble ",
+       "qty": 2,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
       {
        "id": "n-i-diguit",
-       "name": "DI guitarra",
+       "name": "DI Activa ",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
