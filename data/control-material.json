@@ -499,7 +499,7 @@
        "name": "JBL serie 815 (medios-agudos)",
        "qty": 2,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -508,7 +508,7 @@
        "name": "Sub Grave",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
