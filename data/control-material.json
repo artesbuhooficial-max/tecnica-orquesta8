@@ -535,10 +535,10 @@
       },
       {
        "id": "r-i-cablealim",
-       "name": "Cable alimentador",
+       "name": "Cable alimentador IEC",
        "qty": 18,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -607,7 +607,7 @@
        "name": "X32",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
@@ -622,7 +622,7 @@
        "name": "Pinzas de repuesto para micro",
        "qty": 2,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -631,7 +631,7 @@
        "name": "Kit herramientas básico",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": "destornilladores, alicates"
       },
