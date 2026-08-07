@@ -527,11 +527,11 @@
       {
        "id": "r-i-rulo",
        "name": "Rulo 50m",
-       "qty": 2,
+       "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
-       "notes": "Falta 1"
+       "notes": ""
       },
       {
        "id": "r-i-manguera",
@@ -678,6 +678,36 @@
        "retirada": false,
        "devuelta": false,
        "notes": "según sala"
+      }
+     ]
+    },
+    {
+     "id": "vmfy3fhc",
+     "name": "Nueva categoría",
+     "items": [
+      {
+       "id": "fligybyv",
+       "name": "Nuevo material",
+       "qty": 1,
+       "person": "Ctac",
+       "retirada": false,
+       "devuelta": false,
+       "notes": ""
+      }
+     ]
+    },
+    {
+     "id": "k4ve3vkn",
+     "name": "Nueva categoría",
+     "items": [
+      {
+       "id": "8xw3t1lb",
+       "name": "Rulo 25m",
+       "qty": 1,
+       "person": "",
+       "retirada": false,
+       "devuelta": false,
+       "notes": ""
       }
      ]
     }
