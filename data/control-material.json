@@ -74,7 +74,7 @@
       {
        "id": "n-i-sm57",
        "name": "Shure SM57",
-       "qty": 1,
+       "qty": 6,
        "person": "",
        "retirada": true,
        "devuelta": false,
@@ -83,6 +83,15 @@
       {
        "id": "n-i-sm58",
        "name": "Shure SM58",
+       "qty": 11,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      },
+      {
+       "id": "n-i-se",
+       "name": "SE",
        "qty": 1,
        "person": "",
        "retirada": false,
@@ -90,17 +99,8 @@
        "notes": ""
       },
       {
-       "id": "n-i-se",
-       "name": "SE",
-       "qty": 2,
-       "person": "",
-       "retirada": false,
-       "devuelta": false,
-       "notes": ""
-      },
-      {
        "id": "n-i-akg",
-       "name": "Set batería completo AKG",
+       "name": "Set batería completo Senheisser ",
        "qty": 1,
        "person": "",
        "retirada": false,
