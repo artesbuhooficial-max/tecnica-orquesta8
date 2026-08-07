@@ -94,7 +94,7 @@
        "name": "SE",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -103,7 +103,7 @@
        "name": "Set batería completo Senheisser ",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": "incluye clamps y case"
       }
@@ -199,7 +199,7 @@
        "name": "Rulo 50m",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -245,6 +245,15 @@
        "qty": 5,
        "person": "",
        "retirada": false,
+       "devuelta": false,
+       "notes": ""
+      },
+      {
+       "id": "yg1uu53t",
+       "name": "Rulo 25m",
+       "qty": 1,
+       "person": "",
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
@@ -745,5 +754,5 @@
    ]
   }
  ],
- "activeId": "rock0001"
+ "activeId": "neon0001"
 }
