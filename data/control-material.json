@@ -683,11 +683,11 @@
     },
     {
      "id": "vmfy3fhc",
-     "name": "Nueva categoría",
+     "name": "Electricidad",
      "items": [
       {
        "id": "fligybyv",
-       "name": "Nuevo material",
+       "name": "Ctac",
        "qty": 1,
        "person": "Ctac",
        "retirada": false,
@@ -698,14 +698,14 @@
     },
     {
      "id": "k4ve3vkn",
-     "name": "Nueva categoría",
+     "name": "Electricidad",
      "items": [
       {
        "id": "8xw3t1lb",
        "name": "Rulo 25m",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
