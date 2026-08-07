@@ -94,7 +94,7 @@
        "name": "SE",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -103,7 +103,7 @@
        "name": "Set batería completo Senheisser ",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": "incluye clamps y case"
       }
@@ -135,14 +135,23 @@
     },
     {
      "id": "n-cat-pa",
-     "name": "PA",
+     "name": "Monitor Suelo",
      "items": [
       {
        "id": "n-i-jbl815",
-       "name": "JBL serie 815 (medios-agudos)",
+       "name": "Makie",
        "qty": 2,
        "person": "",
-       "retirada": false,
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      },
+      {
+       "id": "xsk8s9or",
+       "name": "JBL ",
+       "qty": 2,
+       "person": "",
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
@@ -205,44 +214,44 @@
       },
       {
        "id": "n-i-cablealim",
-       "name": "Cable alimentador",
-       "qty": 8,
+       "name": "Cable alimentador IEC",
+       "qty": 4,
        "person": "",
-       "retirada": true,
+       "retirada": false,
        "devuelta": false,
        "notes": "ajustar cantidad"
       },
       {
        "id": "n-i-xlr",
        "name": "Cable Canon (XLR) — Artes Búho",
-       "qty": 23,
+       "qty": 25,
        "person": "",
-       "retirada": true,
+       "retirada": false,
        "devuelta": false,
        "notes": ""
       },
       {
        "id": "n-i-regleta",
        "name": "Regleta",
-       "qty": 12,
+       "qty": 3,
        "person": "",
-       "retirada": true,
+       "retirada": false,
        "devuelta": false,
        "notes": ""
       },
       {
-       "id": "8mi10wcx",
+       "id": "c5h76sxl",
+       "name": "XLR largo ",
+       "qty": 5,
+       "person": "",
+       "retirada": false,
+       "devuelta": false,
+       "notes": ""
+      },
+      {
+       "id": "yg1uu53t",
        "name": "Rulo 25m",
        "qty": 1,
-       "person": "",
-       "retirada": true,
-       "devuelta": false,
-       "notes": ""
-      },
-      {
-       "id": "qbpnq6wq",
-       "name": "Rulo RJ45",
-       "qty": 2,
        "person": "",
        "retirada": true,
        "devuelta": false,
@@ -590,7 +599,7 @@
       {
        "id": "r-i-regleta",
        "name": "Regleta",
-       "qty": 8,
+       "qty": 9,
        "person": "",
        "retirada": true,
        "devuelta": false,
