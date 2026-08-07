@@ -61,7 +61,7 @@
        "name": "Pie Spare",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
@@ -393,7 +393,7 @@
        "name": "Pie spare",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
@@ -538,7 +538,7 @@
       {
        "id": "r-i-xlr",
        "name": "Cable Canon (XLR) — Artes Búho",
-       "qty": 17,
+       "qty": 22,
        "person": "",
        "retirada": false,
        "devuelta": false,
@@ -548,6 +548,15 @@
        "id": "r-i-regleta",
        "name": "Regleta",
        "qty": 3,
+       "person": "",
+       "retirada": false,
+       "devuelta": false,
+       "notes": ""
+      },
+      {
+       "id": "ibz2l55f",
+       "name": "XLR Largos ",
+       "qty": 6,
        "person": "",
        "retirada": false,
        "devuelta": false,
