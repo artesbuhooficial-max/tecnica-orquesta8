@@ -206,18 +206,18 @@
       {
        "id": "n-i-manguera",
        "name": "Manguera larga",
-       "qty": 4,
+       "qty": 8,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
       {
        "id": "n-i-cablealim",
        "name": "Cable alimentador IEC",
-       "qty": 4,
+       "qty": 8,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": "ajustar cantidad"
       },
@@ -226,25 +226,16 @@
        "name": "Cable Canon (XLR) — Artes Búho",
        "qty": 25,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
       {
        "id": "n-i-regleta",
        "name": "Regleta",
-       "qty": 3,
+       "qty": 20,
        "person": "",
-       "retirada": false,
-       "devuelta": false,
-       "notes": ""
-      },
-      {
-       "id": "c5h76sxl",
-       "name": "XLR largo ",
-       "qty": 5,
-       "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -271,6 +262,15 @@
        "retirada": false,
        "devuelta": false,
        "notes": ""
+      },
+      {
+       "id": "dtvywi4y",
+       "name": "Tiger Touch I",
+       "qty": 1,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
       }
      ]
     },
@@ -292,7 +292,7 @@
        "name": "Pinzas de repuesto para micro",
        "qty": 2,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -301,7 +301,7 @@
        "name": "Kit herramientas básico",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": "destornilladores, alicates"
       },
@@ -310,36 +310,9 @@
        "name": "Pilas de repuesto (AA/9V)",
        "qty": 4,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": "afinadores, in-ears si aplica"
-      },
-      {
-       "id": "n-i-linterna",
-       "name": "Linterna",
-       "qty": 1,
-       "person": "",
-       "retirada": false,
-       "devuelta": false,
-       "notes": ""
-      },
-      {
-       "id": "n-i-xlrcorto",
-       "name": "Cable XLR corto de repuesto",
-       "qty": 2,
-       "person": "",
-       "retirada": false,
-       "devuelta": false,
-       "notes": "patch mesa/DI"
-      },
-      {
-       "id": "n-i-antipop",
-       "name": "Espuma anti-pop de repuesto",
-       "qty": 2,
-       "person": "",
-       "retirada": false,
-       "devuelta": false,
-       "notes": ""
       },
       {
        "id": "n-i-bridas",
@@ -349,28 +322,19 @@
        "retirada": false,
        "devuelta": false,
        "notes": "paquete"
-      },
-      {
-       "id": "n-i-schuko",
-       "name": "Adaptador schuko / regulador",
-       "qty": 1,
-       "person": "",
-       "retirada": false,
-       "devuelta": false,
-       "notes": "según sala"
       }
      ]
     },
     {
      "id": "2w6d6784",
-     "name": "Nueva categoría",
+     "name": "Herramienta",
      "items": [
       {
        "id": "03mu3rd0",
        "name": "Destornillador estrella ",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
@@ -385,7 +349,31 @@
        "name": "Rulo RJ45",
        "qty": 2,
        "person": "",
-       "retirada": false,
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      }
+     ]
+    },
+    {
+     "id": "kzvvws3s",
+     "name": "PA",
+     "items": [
+      {
+       "id": "kiv7rjxy",
+       "name": "LINE ARRAY",
+       "qty": 2,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      },
+      {
+       "id": "2mc71e9e",
+       "name": "SUB ",
+       "qty": 3,
+       "person": "",
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
