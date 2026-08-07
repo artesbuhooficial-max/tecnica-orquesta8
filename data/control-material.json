@@ -547,7 +547,7 @@
        "name": "Cable alimentador",
        "qty": 14,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": "Falta 1"
       },
