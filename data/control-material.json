@@ -409,7 +409,7 @@
        "name": "Agarre tom",
        "qty": 3,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
