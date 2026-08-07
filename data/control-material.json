@@ -590,7 +590,7 @@
       {
        "id": "r-i-regleta",
        "name": "Regleta",
-       "qty": 8,
+       "qty": 9,
        "person": "",
        "retirada": true,
        "devuelta": false,
@@ -745,5 +745,5 @@
    ]
   }
  ],
- "activeId": "neon0001"
+ "activeId": "rock0001"
 }
