@@ -224,9 +224,9 @@
       {
        "id": "n-i-regleta",
        "name": "Regleta",
-       "qty": 3,
+       "qty": 12,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
