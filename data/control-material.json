@@ -135,14 +135,23 @@
     },
     {
      "id": "n-cat-pa",
-     "name": "PA",
+     "name": "Monitor Suelo",
      "items": [
       {
        "id": "n-i-jbl815",
-       "name": "JBL serie 815 (medios-agudos)",
+       "name": "Makie",
        "qty": 2,
        "person": "",
-       "retirada": false,
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      },
+      {
+       "id": "xsk8s9or",
+       "name": "JBL ",
+       "qty": 2,
+       "person": "",
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
