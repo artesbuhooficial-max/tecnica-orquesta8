@@ -17,6 +17,7 @@
     --ink:#2B2A28;
     --ink-soft:#6B6558;
     --line:#D8CBA8;
+    --red:#B23B3B;
   }
   *{box-sizing:border-box;}
   body{
@@ -27,6 +28,21 @@
   }
   .serif{font-family:'Playfair Display',Georgia,serif;}
   .wrap{max-width:720px;margin:0 auto;padding:24px 16px 60px;}
+
+  .prod-bar{display:flex;gap:8px;align-items:flex-start;flex-wrap:wrap;margin-bottom:12px;}
+  .prod-tabs{display:flex;gap:6px;flex-wrap:wrap;flex:1;}
+  .prod-tab{
+    display:flex;align-items:center;gap:7px;
+    background:var(--paper);border:1.5px solid var(--line);border-radius:20px;
+    padding:7px 13px;font-size:12.5px;font-weight:700;color:var(--ink-soft);cursor:pointer;
+  }
+  .prod-tab.active{border-color:var(--cobalt);color:var(--cobalt-deep);background:#fff;box-shadow:0 1px 3px rgba(28,63,143,.18);}
+  .prod-tab .badge{font-size:10px;font-weight:700;background:var(--cream-dark);color:var(--ink-soft);border-radius:10px;padding:1px 7px;}
+  .prod-tab .badge.pending{background:var(--red);color:#fff;}
+  .prod-add-btn{
+    background:transparent;border:1.5px dashed var(--cobalt);color:var(--cobalt);
+    border-radius:20px;padding:7px 13px;font-size:12.5px;font-weight:700;cursor:pointer;white-space:nowrap;
+  }
 
   .header{
     background:var(--paper);
@@ -116,6 +132,7 @@
   .btn-primary{background:var(--cobalt-deep);color:#fff;border:none;}
   .btn-outline{background:transparent;border:1px solid var(--ink-soft);color:var(--ink-soft);}
   .btn-outline2{background:transparent;border:1px solid var(--cobalt);color:var(--cobalt);}
+  .btn-danger{background:transparent;border:1px solid var(--red);color:var(--red);}
 
   .footer-note{text-align:center;font-size:10px;color:var(--ink-soft);margin-top:18px;}
   #import-file{display:none;}
@@ -123,18 +140,23 @@
 </head>
 <body>
 <div class="wrap">
+  <div class="prod-bar">
+    <div class="prod-tabs" id="prodTabs"></div>
+    <button class="prod-add-btn" id="addProdBtn">+ Producción</button>
+  </div>
+
   <div class="header">
     <div class="header-top">
       <span class="brand">Artes Búho <a href="../AB_Produccion_Tecnica_Orquesta8_v4_1.html" style="color:var(--ink-soft);font-weight:600;text-transform:none;letter-spacing:0;margin-left:8px;text-decoration:underline">← Producción Técnica</a></span>
       <span class="sync-dot" id="syncDot">guardado localmente</span>
     </div>
-    <input class="title-input serif" id="titleInput">
+    <input class="title-input serif" id="titleInput" placeholder="Nombre de la producción">
     <div class="header-row">
-      <input id="eventInput" placeholder="Evento / gira">
+      <input id="eventInput" placeholder="Lugar / detalle">
       <input id="fechaInput" placeholder="Fecha" style="max-width:120px;">
       <input id="responsableInput" placeholder="Responsable general" style="max-width:150px;">
     </div>
-    <div style="font-size:10px;color:var(--ink-soft);margin-top:6px">Responsable por defecto de todo el material. Si un ítem concreto lo lleva otra persona, escríbela en su campo "Persona responsable".</div>
+    <div style="font-size:10px;color:var(--ink-soft);margin-top:6px">Responsable por defecto del material de <b id="respHint"></b>. Si un ítem concreto lo lleva otra persona, escríbela en su campo "Persona responsable".</div>
   </div>
 
   <div class="summary" id="summary"></div>
@@ -145,7 +167,7 @@
   <button class="add-cat-btn" id="addCatBtn">+ Añadir categoría</button>
 
   <div class="actions">
-    <button class="btn-primary" id="resetChecksBtn">↺ Reiniciar checks (nuevo evento)</button>
+    <button class="btn-primary" id="resetChecksBtn">↺ Reiniciar checks (esta producción)</button>
     <button class="btn-outline" id="restoreBtn">Restaurar lista original</button>
   </div>
   <div class="actions">
@@ -157,8 +179,11 @@
     <button class="btn-outline2" id="saveGhBtn">☁ Guardar en GitHub (compartido)</button>
     <button class="btn-outline" id="ghCfgBtn">⚙ Configurar GitHub</button>
   </div>
+  <div class="actions">
+    <button class="btn-danger" id="delProdBtn">🗑 Eliminar esta producción</button>
+  </div>
 
-  <p class="footer-note">Artes Búho · datos guardados en este navegador (localStorage) — pulsa "Guardar en GitHub" para que el equipo vea el mismo estado desde otros dispositivos</p>
+  <p class="footer-note">Artes Búho · datos guardados en este navegador (localStorage) — pulsa "Guardar en GitHub" para que el equipo vea, desde el mismo enlace, el estado de todas las producciones</p>
 </div>
 
 <div id="prodOverlay" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:50;align-items:center;justify-content:center">
@@ -191,76 +216,98 @@
   const STORAGE_KEY = "ab_control_material_v1";
   const uid = () => Math.random().toString(36).slice(2,10);
 
-  function defaultData(){
-    return {
-      title: "Control de Material Técnico",
-      event: "",
-      fecha: "",
-      responsable: "Samuel",
-      categories: [
-        { id: uid(), name: "Pies y soportes", items: [
-          item("Pie de micrófono cantante", 3),
-          item("Pie aéreo", 1),
-          item("Pie bombo", 1),
-          item("Pie caja", 1),
-          item("Agarre tom", 1),
-          item("Agarre goliat", 2),
-        ]},
-        { id: uid(), name: "Micrófonía", items: [
-          item("Shure SM57", 1),
-          item("Shure SM58", 1),
-          item("SE", 2),
-          item("Set batería completo AKG", 1, "", "incluye clamps y case"),
-        ]},
-        { id: uid(), name: "DI", items: [
-          item("DI bajo Behringer", 1),
-          item("DI guitarra", 1),
-        ]},
-        { id: uid(), name: "PA", items: [
-          item("JBL serie 815 (medios-agudos)", 2),
-        ]},
-        { id: uid(), name: "Monitores", items: [
-          item("Behringer P2", 1, "", "unidades según nº de músicos"),
-          item("Roland Cube Street", 1, "", "reserva por si falla monitor"),
-        ]},
-        { id: uid(), name: "Cableado y alimentación", items: [
-          item("Rulo 50m", 1),
-          item("Manguera larga", 4),
-          item("Cable alimentador", 4, "", "ajustar cantidad"),
-          item("Cable Canon (XLR) — Artes Búho", 17),
-          item("Cable Canon (XLR) — aporta Samu", 3, "Samu", "no es material propio, confirmar devolución igualmente"),
-          item("Regleta", 3),
-        ]},
-        { id: uid(), name: "Mesa de sonido", items: [
-          item("Mesa de sonido", 1, "Samu", "trae la suya propia"),
-        ]},
-        { id: uid(), name: "Extras recomendados", items: [
-          item("Cinta americana (gaffer)", 1),
-          item("Pinzas de repuesto para micro", 2),
-          item("Kit herramientas básico", 1, "", "destornilladores, alicates"),
-          item("Pilas de repuesto (AA/9V)", 4, "", "afinadores, in-ears si aplica"),
-          item("Linterna", 1),
-          item("Cable XLR corto de repuesto", 2, "", "patch mesa/DI"),
-          item("Espuma anti-pop de repuesto", 2),
-          item("Bridas / velcro para cables", 1, "", "paquete"),
-          item("Adaptador schuko / regulador", 1, "", "según sala"),
-        ]},
-      ],
-    };
-  }
   function item(name, qty, person, notes){
     return { id: uid(), name, qty: qty||1, person: person||"", retirada:false, devuelta:false, notes: notes||"" };
   }
 
-  let data = load();
-  if(!data.responsable) data.responsable = "Samuel";
-  let openCats = {};
-  data.categories.forEach(c => openCats[c.id] = true);
+  function baseCategories(){
+    return [
+      { id: uid(), name: "Pies y soportes", items: [
+        item("Pie de micrófono cantante", 3),
+        item("Pie aéreo", 1),
+        item("Pie bombo", 1),
+        item("Pie caja", 1),
+        item("Agarre tom", 1),
+        item("Agarre goliat", 2),
+      ]},
+      { id: uid(), name: "Micrófonía", items: [
+        item("Shure SM57", 1),
+        item("Shure SM58", 1),
+        item("SE", 2),
+        item("Set batería completo AKG", 1, "", "incluye clamps y case"),
+      ]},
+      { id: uid(), name: "DI", items: [
+        item("DI bajo Behringer", 1),
+        item("DI guitarra", 1),
+      ]},
+      { id: uid(), name: "PA", items: [
+        item("JBL serie 815 (medios-agudos)", 2),
+      ]},
+      { id: uid(), name: "Monitores", items: [
+        item("Behringer P2", 1, "", "unidades según nº de músicos"),
+        item("Roland Cube Street", 1, "", "reserva por si falla monitor"),
+      ]},
+      { id: uid(), name: "Cableado y alimentación", items: [
+        item("Rulo 50m", 1),
+        item("Manguera larga", 4),
+        item("Cable alimentador", 4, "", "ajustar cantidad"),
+        item("Cable Canon (XLR) — Artes Búho", 17),
+        item("Regleta", 3),
+      ]},
+      { id: uid(), name: "Mesa de sonido", items: [] },
+      { id: uid(), name: "Extras recomendados", items: [
+        item("Cinta americana (gaffer)", 1),
+        item("Pinzas de repuesto para micro", 2),
+        item("Kit herramientas básico", 1, "", "destornilladores, alicates"),
+        item("Pilas de repuesto (AA/9V)", 4, "", "afinadores, in-ears si aplica"),
+        item("Linterna", 1),
+        item("Cable XLR corto de repuesto", 2, "", "patch mesa/DI"),
+        item("Espuma anti-pop de repuesto", 2),
+        item("Bridas / velcro para cables", 1, "", "paquete"),
+        item("Adaptador schuko / regulador", 1, "", "según sala"),
+      ]},
+    ];
+  }
+
+  function newProduction(name, event, fecha, responsable){
+    return { id: uid(), name: name || "Nueva producción", event: event || "", fecha: fecha || "", responsable: responsable || "", categories: baseCategories() };
+  }
+
+  function defaultData(){
+    const p1 = newProduction("Noches de Neón", "Paredes de Escalona", "Sáb 08/08/2026", "");
+    const p2 = newProduction("Maquillaje Rock", "Valencia de Don Juan", "Sáb 08/08/2026", "");
+    return { productions: [p1, p2], activeId: p1.id };
+  }
+
+  function migrateLegacy(raw){
+    const p = {
+      id: uid(),
+      name: raw.event || raw.title || "Producción 1",
+      event: (raw.title && raw.event) ? raw.title : "",
+      fecha: raw.fecha || "",
+      responsable: raw.responsable || "",
+      categories: raw.categories || []
+    };
+    const p2 = newProduction("Producción 2");
+    return { productions: [p, p2], activeId: p.id };
+  }
+
+  function normalize(raw){
+    if(raw && Array.isArray(raw.productions) && raw.productions.length){
+      if(!raw.activeId || !raw.productions.some(p => p.id === raw.activeId)) raw.activeId = raw.productions[0].id;
+      return raw;
+    }
+    if(raw && Array.isArray(raw.categories)) return migrateLegacy(raw);
+    return null;
+  }
 
   function load(){
     try{
       const raw = localStorage.getItem(STORAGE_KEY);
-      if(raw) return JSON.parse(raw);
+      if(raw){
+        const parsed = normalize(JSON.parse(raw));
+        if(parsed) return parsed;
+      }
     }catch(e){}
     return defaultData();
   }
@@ -273,41 +320,78 @@
     }
   }
 
+  let data = load();
+  let openCats = {};
+
+  function activeProd(){
+    return data.productions.find(p => p.id === data.activeId) || data.productions[0];
+  }
+  function resetOpenCats(){
+    openCats = {};
+    activeProd().categories.forEach(c => openCats[c.id] = true);
+  }
+  resetOpenCats();
+
   const titleInput = document.getElementById('titleInput');
   const eventInput = document.getElementById('eventInput');
   const fechaInput = document.getElementById('fechaInput');
   const responsableInput = document.getElementById('responsableInput');
 
-  function renderHeader(){
-    titleInput.value = data.title;
-    eventInput.value = data.event;
-    fechaInput.value = data.fecha;
-    responsableInput.value = data.responsable || "";
+  function prodStats(prod){
+    let total=0, ret=0, dev=0;
+    prod.categories.forEach(c => c.items.forEach(it => { total++; if(it.retirada) ret++; if(it.devuelta) dev++; }));
+    return { total, ret, dev, enCalle: ret - dev };
   }
-  titleInput.addEventListener('input', e => { data.title = e.target.value; save(); });
-  eventInput.addEventListener('input', e => { data.event = e.target.value; save(); });
-  fechaInput.addEventListener('input', e => { data.fecha = e.target.value; save(); });
-  responsableInput.addEventListener('input', e => { data.responsable = e.target.value; save(); renderCategories(); });
+
+  function renderTabs(){
+    const wrap = document.getElementById('prodTabs');
+    wrap.innerHTML = '';
+    data.productions.forEach(p => {
+      const st = prodStats(p);
+      const badge = st.enCalle > 0
+        ? `<span class="badge pending">${st.enCalle} en calle</span>`
+        : `<span class="badge">${st.ret}/${st.total}</span>`;
+      const btn = document.createElement('button');
+      btn.className = 'prod-tab' + (p.id === data.activeId ? ' active' : '');
+      btn.innerHTML = `${escapeAttr(p.name || 'Sin nombre')} ${badge}`;
+      btn.addEventListener('click', () => {
+        data.activeId = p.id;
+        resetOpenCats();
+        save(); renderAll();
+      });
+      wrap.appendChild(btn);
+    });
+  }
+
+  function renderHeader(){
+    const p = activeProd();
+    titleInput.value = p.name;
+    eventInput.value = p.event;
+    fechaInput.value = p.fecha;
+    responsableInput.value = p.responsable || "";
+    document.getElementById('respHint').textContent = p.name || 'esta producción';
+  }
+  titleInput.addEventListener('input', e => { activeProd().name = e.target.value; save(); renderTabs(); document.getElementById('respHint').textContent = e.target.value || 'esta producción'; });
+  eventInput.addEventListener('input', e => { activeProd().event = e.target.value; save(); });
+  fechaInput.addEventListener('input', e => { activeProd().fecha = e.target.value; save(); });
+  responsableInput.addEventListener('input', e => { activeProd().responsable = e.target.value; save(); renderCategories(); });
 
   function renderSummary(){
-    let total=0, ret=0, dev=0;
-    data.categories.forEach(c => c.items.forEach(it => {
-      total++; if(it.retirada) ret++; if(it.devuelta) dev++;
-    }));
-    const pend = ret - dev;
+    const st = prodStats(activeProd());
     const el = document.getElementById('summary');
     el.innerHTML = `
-      <div class="stat"><b style="color:var(--cobalt-deep)">${total}</b><span>Total</span></div>
-      <div class="stat"><b style="color:var(--gold)">${ret}</b><span>Retirado</span></div>
-      <div class="stat"><b style="color:var(--cobalt)">${dev}</b><span>Devuelto</span></div>
-      <div class="stat"><b style="color:${pend>0?'#B23B3B':'var(--ink-soft)'}">${pend}</b><span>En calle</span></div>
+      <div class="stat"><b style="color:var(--cobalt-deep)">${st.total}</b><span>Total</span></div>
+      <div class="stat"><b style="color:var(--gold)">${st.ret}</b><span>Retirado</span></div>
+      <div class="stat"><b style="color:var(--cobalt)">${st.dev}</b><span>Devuelto</span></div>
+      <div class="stat"><b style="color:${st.enCalle>0?'var(--red)':'var(--ink-soft)'}">${st.enCalle}</b><span>En calle</span></div>
     `;
   }
 
   function renderCategories(){
+    const prod = activeProd();
     const wrap = document.getElementById('categories');
     wrap.innerHTML = '';
-    data.categories.forEach(cat => {
+    prod.categories.forEach(cat => {
       const catTotal = cat.items.length;
       const catRet = cat.items.filter(i=>i.retirada).length;
       const catDev = cat.items.filter(i=>i.devuelta).length;
@@ -337,7 +421,7 @@
       if(open){
         const body = document.createElement('div');
         body.className = 'cat-body';
-        cat.items.forEach(it => body.appendChild(renderItem(cat, it)));
+        cat.items.forEach(it => body.appendChild(renderItem(prod, cat, it)));
 
         const footer = document.createElement('div');
         footer.className = 'cat-footer';
@@ -347,12 +431,12 @@
         `;
         footer.querySelector('.add').addEventListener('click', () => {
           cat.items.push(item('Nuevo material', 1));
-          save(); renderCategories();
+          save(); renderAll();
         });
         footer.querySelector('.del').addEventListener('click', () => {
           if(!confirm('¿Eliminar esta categoría y todo su material?')) return;
-          data.categories = data.categories.filter(c => c.id !== cat.id);
-          save(); renderCategories();
+          prod.categories = prod.categories.filter(c => c.id !== cat.id);
+          save(); renderAll();
         });
         body.appendChild(footer);
         catEl.appendChild(body);
@@ -361,7 +445,7 @@
     });
   }
 
-  function renderItem(cat, it){
+  function renderItem(prod, cat, it){
     const el = document.createElement('div');
     el.className = 'item';
     el.innerHTML = `
@@ -371,7 +455,7 @@
       </div>
       <div class="item-row">
         <label class="qty-label">Cant. <input type="number" min="0" class="qty-input" value="${it.qty}"></label>
-        <input class="person-input" placeholder="${escapeAttr(data.responsable ? 'Por defecto: '+data.responsable : 'Persona responsable')}" title="Déjalo vacío para usar el responsable general (${escapeAttr(data.responsable||'sin definir')}). Escribe aquí solo si este material concreto lo lleva otra persona." value="${escapeAttr(it.person)}">
+        <input class="person-input" placeholder="${escapeAttr(prod.responsable ? 'Por defecto: '+prod.responsable : 'Persona responsable')}" title="Déjalo vacío para usar el responsable general (${escapeAttr(prod.responsable||'sin definir')}). Escribe aquí solo si este material concreto lo lleva otra persona." value="${escapeAttr(it.person)}">
       </div>
       <input class="notes-input" placeholder="Notas..." value="${escapeAttr(it.notes)}">
       <div class="btn-row">
@@ -409,29 +493,48 @@
   }
 
   function renderAll(){
+    renderTabs();
     renderHeader();
     renderSummary();
     renderCategories();
   }
 
+  document.getElementById('addProdBtn').addEventListener('click', () => {
+    const p = newProduction('Nueva producción');
+    data.productions.push(p);
+    data.activeId = p.id;
+    resetOpenCats();
+    save(); renderAll();
+    titleInput.focus(); titleInput.select();
+  });
+
+  document.getElementById('delProdBtn').addEventListener('click', () => {
+    if(data.productions.length <= 1){ alert('Tiene que quedar al menos una producción.'); return; }
+    const p = activeProd();
+    if(!confirm(`¿Eliminar la producción «${p.name}» y todo su material? Esto no se puede deshacer.`)) return;
+    data.productions = data.productions.filter(x => x.id !== p.id);
+    data.activeId = data.productions[0].id;
+    resetOpenCats();
+    save(); renderAll();
+  });
+
   document.getElementById('addCatBtn').addEventListener('click', () => {
     const c = { id: uid(), name: 'Nueva categoría', items: [] };
-    data.categories.push(c);
+    activeProd().categories.push(c);
     openCats[c.id] = true;
     save(); renderAll();
   });
 
   document.getElementById('resetChecksBtn').addEventListener('click', () => {
-    if(!confirm('Esto pone a cero todos los check de retirada y devolución. ¿Continuar?')) return;
-    data.categories.forEach(c => c.items.forEach(it => { it.retirada=false; it.devuelta=false; }));
+    if(!confirm(`Esto pone a cero todos los check de retirada y devolución de «${activeProd().name}». ¿Continuar?`)) return;
+    activeProd().categories.forEach(c => c.items.forEach(it => { it.retirada=false; it.devuelta=false; }));
     save(); renderAll();
   });
 
   document.getElementById('restoreBtn').addEventListener('click', () => {
-    if(!confirm('Esto restaura la lista original de material y borra tus cambios. ¿Continuar?')) return;
-    data = defaultData();
-    openCats = {};
-    data.categories.forEach(c => openCats[c.id] = true);
+    if(!confirm(`Esto restaura la lista original de material de «${activeProd().name}» y borra tus cambios en esta producción. ¿Continuar?`)) return;
+    activeProd().categories = baseCategories();
+    resetOpenCats();
     save(); renderAll();
   });
 
@@ -440,7 +543,7 @@
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `control-material-${(data.event||'artesbuho').replace(/\s+/g,'_')}.json`;
+    a.download = `control-material-artesbuho.json`;
     a.click();
     URL.revokeObjectURL(url);
   });
@@ -455,10 +558,19 @@
     reader.onload = () => {
       try{
         const parsed = JSON.parse(reader.result);
-        if(!parsed.categories) throw new Error('formato inválido');
-        data = parsed;
-        openCats = {};
-        data.categories.forEach(c => openCats[c.id] = true);
+        if(Array.isArray(parsed.productions) && parsed.productions.length){
+          data = normalize(parsed);
+        }else if(Array.isArray(parsed.categories)){
+          if(!confirm(`Este archivo es de una sola producción. ¿Importarlo en «${activeProd().name}» (sustituye su material actual)?`)) return;
+          const p = activeProd();
+          p.name = parsed.event || parsed.title || p.name;
+          p.fecha = parsed.fecha || p.fecha;
+          p.responsable = parsed.responsable || p.responsable;
+          p.categories = parsed.categories;
+        }else{
+          throw new Error('formato inválido');
+        }
+        resetOpenCats();
         save(); renderAll();
       }catch(err){
         alert('No se pudo importar el archivo: ' + err.message);
@@ -543,13 +655,15 @@
 
   function applyProdImport(sel){
     const label = sel.kind==='rider' ? 'todo el inventario' : `el material de «${sel.prod.nombre}»`;
-    if(!confirm(`Esto reemplaza la lista de material actual por ${label} (se pierden los checks de retirada/devuelta actuales). ¿Continuar?`)) return;
-    data.categories = sel.kind==='rider' ? riderToCategories(sel.rider) : prodMaterialToCategories(sel.prod);
+    if(!confirm(`Esto reemplaza el material de «${activeProd().name}» por ${label} (se pierden los checks de retirada/devuelta actuales de esta producción). ¿Continuar?`)) return;
+    const p = activeProd();
+    p.categories = sel.kind==='rider' ? riderToCategories(sel.rider) : prodMaterialToCategories(sel.prod);
     if(sel.kind==='prod'){
-      data.event = sel.prod.nombre;
-      data.fecha = sel.prod.fecha || data.fecha;
+      p.name = sel.prod.nombre;
+      p.fecha = sel.prod.fecha || p.fecha;
+      p.event = sel.prod.lugar || p.event;
     }
-    openCats = {}; data.categories.forEach(c => openCats[c.id] = true);
+    resetOpenCats();
     prodOverlay.style.display = 'none';
     save(); renderAll();
   }
@@ -607,9 +721,10 @@
       if(!r.ok) return false;
       const j = await r.json();
       const parsed = JSON.parse(b64ToUtf8(j.content));
-      if(!parsed || !Array.isArray(parsed.categories)) return false;
-      data = parsed;
-      openCats = {}; data.categories.forEach(c => openCats[c.id] = true);
+      const norm = normalize(parsed);
+      if(!norm) return false;
+      data = norm;
+      resetOpenCats();
       return true;
     }catch(e){ return false; }
   }

@@ -1,19 +1,27 @@
 # Control de Material — Artes Búho
 
-Checklist de control de material técnico para eventos: qué se lleva cada persona, cantidad, y doble check de **retirada** y **devolución**. Pensado para montaje/desmontaje de Noches de Neón, Bella Bestia y cualquier bolo suelto.
+Checklist de control de material técnico para eventos: qué se lleva cada persona, cantidad, y doble check de **retirada** y **devolución**. Pensado para montaje/desmontaje de Noches de Neón, Maquillaje Rock, Bella Bestia y cualquier bolo suelto — incluidos días con **varios bolos a la vez**.
 
 Es un único archivo HTML autocontenido (HTML + CSS + JS, sin frameworks, sin build). Se abre directamente en el navegador o se aloja en GitHub Pages.
 
-## Qué hace
+## Varias producciones, un solo enlace
+
+La herramienta soporta **N producciones en paralelo** (por ejemplo, dos bolos el mismo día): arriba del todo hay una fila de pestañas, una por producción, con un botón **+ Producción** para añadir otra. Cada pestaña muestra el número de ítems **"en calle"** (retirado y aún no devuelto) para vigilar de un vistazo si algo se queda sin volver.
+
+Cada producción tiene su propio nombre, lugar/detalle, fecha, responsable general y lista de material — completamente independientes entre sí. Al pulsar "☁ Guardar en GitHub (compartido)" se sube **todo** (todas las producciones a la vez) al mismo archivo, así que cualquiera que abra el mismo enlace (el ordenador, el móvil, o el de un asistente al que se lo pases) ve automáticamente todas las producciones del día y puede moverse entre pestañas para marcar solo la que le toca.
+
+Se puede eliminar una producción con "🗑 Eliminar esta producción" (tiene que quedar al menos una).
+
+## Qué hace (por producción)
 
 - Categorías: Pies y soportes, Micrófonía, DI, PA, Monitores, Cableado y alimentación, Mesa de sonido, Extras recomendados.
 - Cada ítem: nombre, cantidad, persona responsable, notas, y dos botones — **Marcar retirada** / **Marcar devuelta** (devuelta solo se activa si ya está retirada).
 - Sello visual (dorado = retirado, cobalto = devuelto) para ver de un vistazo qué falta.
 - Panel resumen: Total / Retirado / Devuelto / **En calle** (retirado y aún no devuelto — el número a vigilar al final del bolo).
 - Editable en caliente: añadir o borrar material, añadir o borrar categorías enteras, renombrar todo.
-- **Reiniciar checks**: pone todos los ticks a cero para el siguiente evento sin perder la lista de material.
-- **Restaurar lista original**: vuelve a la plantilla base si lías algo.
-- **Exportar / Importar copia (JSON)**: descarga un `.json` con el estado completo. Útil para pasar el estado entre el ordenador y el móvil, o guardar un histórico por evento.
+- **Reiniciar checks**: pone a cero los ticks de la producción activa para el siguiente evento sin perder su lista de material.
+- **Restaurar lista original**: vuelve a la plantilla base la producción activa si lías algo.
+- **Exportar / Importar copia (JSON)**: exporta **todas** las producciones en un `.json`. Al importar, si el archivo trae varias producciones sustituye todo; si es un export antiguo de una sola producción, se importa solo dentro de la producción activa.
 
 ## Persistencia de datos
 
@@ -57,11 +65,11 @@ Este archivo vive como herramienta independiente (no se ha fusionado con el HTML
 
 - **Enlace directo**: la cabecera tiene un enlace "← Producción Técnica" al dashboard grande, y el dashboard grande tiene un botón "📋 Control Material" que abre este archivo.
 - **"📦 Cargar material desde Producción Técnica"**: lee en directo `data/estado.json` del repo `artesbuhooficial-max/tecnica-orquesta8` (el mismo archivo que genera el botón "☁ Guardar en GitHub" del dashboard grande) y deja elegir entre:
-  - importar **todo el rider/inventario** completo como categorías de este checklist, o
-  - importar **el material ya asignado a una producción concreta** (una sola categoría con exactamente lo que esa producción tiene reservado), rellenando también Evento y Fecha automáticamente.
-  
-  Esto sustituye la lista de material actual (con confirmación previa), así que el checklist de salida/entrada siempre puede refrescarse contra el inventario real en vez de mantenerse a mano por separado.
-- **"☁ Guardar en GitHub (compartido)"**: en vez de (o además de) `localStorage` por dispositivo, este botón escribe el estado del checklist (`data/control-material.json`) directamente en el mismo repositorio, vía la API de contenidos de GitHub. Al abrir la página, intenta cargar automáticamente esa copia compartida — así Miriam, Manu o Samu pueden ver desde su propio móvil el mismo estado de qué se ha retirado y devuelto, sin necesidad de backend propio (Google Sheets/Firebase ya no hace falta para este caso).
+  - importar **todo el rider/inventario** completo como categorías, o
+  - importar **el material ya asignado a una producción concreta** (una sola categoría con exactamente lo que esa producción tiene reservado), rellenando también nombre, lugar y fecha automáticamente.
+
+  Esto sustituye el material de la **producción activa** (la pestaña seleccionada arriba, con confirmación previa) — el resto de pestañas/producciones no se tocan. Así, con dos bolos el mismo día, cada pestaña se puede refrescar contra el inventario real de forma independiente.
+- **"☁ Guardar en GitHub (compartido)"**: en vez de (o además de) `localStorage` por dispositivo, este botón escribe el estado completo del checklist —**todas las producciones/pestañas**— (`data/control-material.json`) directamente en el mismo repositorio, vía la API de contenidos de GitHub. Al abrir la página, intenta cargar automáticamente esa copia compartida — así Miriam, Manu o Samu (o un asistente al que le pases el mismo enlace) pueden ver desde su propio móvil el mismo estado de qué se ha retirado y devuelto en cada producción, sin necesidad de backend propio (Google Sheets/Firebase ya no hace falta para este caso).
 - Configuración (repo/rama/ruta/token) en el botón "⚙ Configurar GitHub": el token necesita permiso únicamente de **"Contents: Read and write"**, limitado a este repositorio, y se guarda solo en `localStorage` del navegador — nunca se sube al repo. La lectura (ver el checklist compartido, o cargar el inventario) no necesita token porque el repo es público; el token solo hace falta para **guardar**.
 
 ## Branding usado

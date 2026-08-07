@@ -1,207 +1,175 @@
 {
- "title": "Control de Material Técnico",
- "event": "Boda Samuel Socas",
- "fecha": "25/07/26",
- "categories": [
+ "productions": [
   {
-   "id": "3k9gcvmz",
-   "name": "Pies y soportes",
-   "items": [
+   "id": "neon0001",
+   "name": "Noches de Neón",
+   "event": "Paredes de Escalona",
+   "fecha": "Sáb 08/08/2026",
+   "responsable": "",
+   "categories": [
     {
-     "id": "p1d7xm7i",
-     "name": "Pie de micrófono cantante",
-     "qty": 3,
-     "person": "",
-     "retirada": true,
-     "devuelta": false,
-     "notes": ""
+     "id": "n-cat-pies",
+     "name": "Pies y soportes",
+     "items": [
+      { "id": "n-i-pie-cant", "name": "Pie de micrófono cantante", "qty": 3, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "n-i-pie-aereo", "name": "Pie aéreo", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "n-i-pie-bombo", "name": "Pie bombo", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "n-i-pie-caja", "name": "Pie caja", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "n-i-agarre-tom", "name": "Agarre tom", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "n-i-agarre-goliat", "name": "Agarre goliat", "qty": 2, "person": "", "retirada": false, "devuelta": false, "notes": "" }
+     ]
     },
     {
-     "id": "ze5c7y6d",
-     "name": "Pie aéreo",
-     "qty": 1,
-     "person": "",
-     "retirada": true,
-     "devuelta": false,
-     "notes": ""
+     "id": "n-cat-mic",
+     "name": "Micrófonía",
+     "items": [
+      { "id": "n-i-sm57", "name": "Shure SM57", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "n-i-sm58", "name": "Shure SM58", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "n-i-se", "name": "SE", "qty": 2, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "n-i-akg", "name": "Set batería completo AKG", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "incluye clamps y case" }
+     ]
     },
     {
-     "id": "180a7sld",
-     "name": "Pie caja",
-     "qty": 1,
-     "person": "",
-     "retirada": true,
-     "devuelta": false,
-     "notes": ""
+     "id": "n-cat-di",
+     "name": "DI",
+     "items": [
+      { "id": "n-i-dibajo", "name": "DI bajo Behringer", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "n-i-diguit", "name": "DI guitarra", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "" }
+     ]
+    },
+    {
+     "id": "n-cat-pa",
+     "name": "PA",
+     "items": [
+      { "id": "n-i-jbl815", "name": "JBL serie 815 (medios-agudos)", "qty": 2, "person": "", "retirada": false, "devuelta": false, "notes": "" }
+     ]
+    },
+    {
+     "id": "n-cat-mon",
+     "name": "Monitores",
+     "items": [
+      { "id": "n-i-p2", "name": "Behringer P2", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "unidades según nº de músicos" },
+      { "id": "n-i-roland", "name": "Roland Cube Street", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "reserva por si falla monitor" }
+     ]
+    },
+    {
+     "id": "n-cat-cable",
+     "name": "Cableado y alimentación",
+     "items": [
+      { "id": "n-i-rulo", "name": "Rulo 50m", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "n-i-manguera", "name": "Manguera larga", "qty": 4, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "n-i-cablealim", "name": "Cable alimentador", "qty": 4, "person": "", "retirada": false, "devuelta": false, "notes": "ajustar cantidad" },
+      { "id": "n-i-xlr", "name": "Cable Canon (XLR) — Artes Búho", "qty": 17, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "n-i-regleta", "name": "Regleta", "qty": 3, "person": "", "retirada": false, "devuelta": false, "notes": "" }
+     ]
+    },
+    {
+     "id": "n-cat-mesa",
+     "name": "Mesa de sonido",
+     "items": []
+    },
+    {
+     "id": "n-cat-extras",
+     "name": "Extras recomendados",
+     "items": [
+      { "id": "n-i-gaffer", "name": "Cinta americana (gaffer)", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "n-i-pinzas", "name": "Pinzas de repuesto para micro", "qty": 2, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "n-i-kit", "name": "Kit herramientas básico", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "destornilladores, alicates" },
+      { "id": "n-i-pilas", "name": "Pilas de repuesto (AA/9V)", "qty": 4, "person": "", "retirada": false, "devuelta": false, "notes": "afinadores, in-ears si aplica" },
+      { "id": "n-i-linterna", "name": "Linterna", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "n-i-xlrcorto", "name": "Cable XLR corto de repuesto", "qty": 2, "person": "", "retirada": false, "devuelta": false, "notes": "patch mesa/DI" },
+      { "id": "n-i-antipop", "name": "Espuma anti-pop de repuesto", "qty": 2, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "n-i-bridas", "name": "Bridas / velcro para cables", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "paquete" },
+      { "id": "n-i-schuko", "name": "Adaptador schuko / regulador", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "según sala" }
+     ]
     }
    ]
   },
   {
-   "id": "rw2c3n3z",
-   "name": "Micrófonía",
-   "items": [
+   "id": "rock0001",
+   "name": "Maquillaje Rock",
+   "event": "Valencia de Don Juan",
+   "fecha": "Sáb 08/08/2026",
+   "responsable": "",
+   "categories": [
     {
-     "id": "s7iagwm9",
-     "name": "Shure SM57",
-     "qty": 1,
-     "person": "",
-     "retirada": true,
-     "devuelta": false,
-     "notes": ""
+     "id": "r-cat-pies",
+     "name": "Pies y soportes",
+     "items": [
+      { "id": "r-i-pie-cant", "name": "Pie de micrófono cantante", "qty": 3, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "r-i-pie-aereo", "name": "Pie aéreo", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "r-i-pie-bombo", "name": "Pie bombo", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "r-i-pie-caja", "name": "Pie caja", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "r-i-agarre-tom", "name": "Agarre tom", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "r-i-agarre-goliat", "name": "Agarre goliat", "qty": 2, "person": "", "retirada": false, "devuelta": false, "notes": "" }
+     ]
     },
     {
-     "id": "5yx2mti4",
-     "name": "Shure SM58",
-     "qty": 1,
-     "person": "",
-     "retirada": true,
-     "devuelta": false,
-     "notes": ""
+     "id": "r-cat-mic",
+     "name": "Micrófonía",
+     "items": [
+      { "id": "r-i-sm57", "name": "Shure SM57", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "r-i-sm58", "name": "Shure SM58", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "r-i-se", "name": "SE", "qty": 2, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "r-i-akg", "name": "Set batería completo AKG", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "incluye clamps y case" }
+     ]
     },
     {
-     "id": "xlayj9oc",
-     "name": "SE",
-     "qty": 2,
-     "person": "",
-     "retirada": true,
-     "devuelta": false,
-     "notes": ""
+     "id": "r-cat-di",
+     "name": "DI",
+     "items": [
+      { "id": "r-i-dibajo", "name": "DI bajo Behringer", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "r-i-diguit", "name": "DI guitarra", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "" }
+     ]
     },
     {
-     "id": "crxcxge0",
-     "name": "Set batería completo AKG",
-     "qty": 1,
-     "person": "",
-     "retirada": true,
-     "devuelta": false,
-     "notes": "incluye clamps y case"
+     "id": "r-cat-pa",
+     "name": "PA",
+     "items": [
+      { "id": "r-i-jbl815", "name": "JBL serie 815 (medios-agudos)", "qty": 2, "person": "", "retirada": false, "devuelta": false, "notes": "" }
+     ]
+    },
+    {
+     "id": "r-cat-mon",
+     "name": "Monitores",
+     "items": [
+      { "id": "r-i-p2", "name": "Behringer P2", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "unidades según nº de músicos" },
+      { "id": "r-i-roland", "name": "Roland Cube Street", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "reserva por si falla monitor" }
+     ]
+    },
+    {
+     "id": "r-cat-cable",
+     "name": "Cableado y alimentación",
+     "items": [
+      { "id": "r-i-rulo", "name": "Rulo 50m", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "r-i-manguera", "name": "Manguera larga", "qty": 4, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "r-i-cablealim", "name": "Cable alimentador", "qty": 4, "person": "", "retirada": false, "devuelta": false, "notes": "ajustar cantidad" },
+      { "id": "r-i-xlr", "name": "Cable Canon (XLR) — Artes Búho", "qty": 17, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "r-i-regleta", "name": "Regleta", "qty": 3, "person": "", "retirada": false, "devuelta": false, "notes": "" }
+     ]
+    },
+    {
+     "id": "r-cat-mesa",
+     "name": "Mesa de sonido",
+     "items": []
+    },
+    {
+     "id": "r-cat-extras",
+     "name": "Extras recomendados",
+     "items": [
+      { "id": "r-i-gaffer", "name": "Cinta americana (gaffer)", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "r-i-pinzas", "name": "Pinzas de repuesto para micro", "qty": 2, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "r-i-kit", "name": "Kit herramientas básico", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "destornilladores, alicates" },
+      { "id": "r-i-pilas", "name": "Pilas de repuesto (AA/9V)", "qty": 4, "person": "", "retirada": false, "devuelta": false, "notes": "afinadores, in-ears si aplica" },
+      { "id": "r-i-linterna", "name": "Linterna", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "r-i-xlrcorto", "name": "Cable XLR corto de repuesto", "qty": 2, "person": "", "retirada": false, "devuelta": false, "notes": "patch mesa/DI" },
+      { "id": "r-i-antipop", "name": "Espuma anti-pop de repuesto", "qty": 2, "person": "", "retirada": false, "devuelta": false, "notes": "" },
+      { "id": "r-i-bridas", "name": "Bridas / velcro para cables", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "paquete" },
+      { "id": "r-i-schuko", "name": "Adaptador schuko / regulador", "qty": 1, "person": "", "retirada": false, "devuelta": false, "notes": "según sala" }
+     ]
     }
    ]
-  },
-  {
-   "id": "lfbjuiea",
-   "name": "DI",
-   "items": [
-    {
-     "id": "z8ohlubz",
-     "name": "DI bajo Behringer",
-     "qty": 1,
-     "person": "",
-     "retirada": true,
-     "devuelta": false,
-     "notes": ""
-    },
-    {
-     "id": "ftbrnwrc",
-     "name": "DI guitarra",
-     "qty": 1,
-     "person": "",
-     "retirada": true,
-     "devuelta": false,
-     "notes": ""
-    }
-   ]
-  },
-  {
-   "id": "mneocivm",
-   "name": "PA",
-   "items": [
-    {
-     "id": "mjpn0o26",
-     "name": "JBL serie 815 (medios-agudos)",
-     "qty": 2,
-     "person": "",
-     "retirada": true,
-     "devuelta": false,
-     "notes": ""
-    }
-   ]
-  },
-  {
-   "id": "c8ao3gib",
-   "name": "Monitores",
-   "items": [
-    {
-     "id": "094ucy9n",
-     "name": "Behringer P2",
-     "qty": 4,
-     "person": "",
-     "retirada": true,
-     "devuelta": false,
-     "notes": "unidades según nº de músicos"
-    },
-    {
-     "id": "51wd480f",
-     "name": "Roland Cube Street",
-     "qty": 1,
-     "person": "",
-     "retirada": true,
-     "devuelta": false,
-     "notes": "reserva por si falla monitor"
-    }
-   ]
-  },
-  {
-   "id": "6v2sduuv",
-   "name": "Cableado y alimentación",
-   "items": [
-    {
-     "id": "wak9ctni",
-     "name": "Rulo 50m",
-     "qty": 1,
-     "person": "",
-     "retirada": true,
-     "devuelta": false,
-     "notes": ""
-    },
-    {
-     "id": "tyn2aqq5",
-     "name": "Manguera larga",
-     "qty": 4,
-     "person": "",
-     "retirada": true,
-     "devuelta": false,
-     "notes": ""
-    },
-    {
-     "id": "sigz6yhs",
-     "name": "Cable alimentador",
-     "qty": 4,
-     "person": "",
-     "retirada": true,
-     "devuelta": false,
-     "notes": "ajustar cantidad"
-    },
-    {
-     "id": "sxia1yjh",
-     "name": "Cable Canon (XLR) — Artes Búho",
-     "qty": 20,
-     "person": "",
-     "retirada": true,
-     "devuelta": false,
-     "notes": ""
-    },
-    {
-     "id": "dshcc5f3",
-     "name": "Regleta",
-     "qty": 3,
-     "person": "",
-     "retirada": true,
-     "devuelta": false,
-     "notes": ""
-    }
-   ]
-  },
-  {
-   "id": "zrsjdn3m",
-   "name": "Mesa de sonido",
-   "items": []
-  },
-  {
-   "id": "g8di0rft",
-   "name": "Extras recomendados",
-   "items": []
   }
  ],
- "responsable": "Samuel"
+ "activeId": "neon0001"
 }

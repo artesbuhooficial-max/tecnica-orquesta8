@@ -3109,9 +3109,29 @@
     }
    ],
    "notas": "Pendiente de confirmar con Héctor"
+  },
+  {
+   "id": "n163",
+   "nombre": "Noches de Neón",
+   "lugar": "Paredes de Escalona",
+   "fecha": "2026-08-08",
+   "formato": "Orquesta 8 · montaje grande (2 truss, cabezas móviles BEAM, wash, telón LED)",
+   "estado": "confirmado",
+   "material": [],
+   "notas": "Bolo doble el mismo día junto a «Maquillaje Rock» — equipo y furgón compartidos, vigilar solapes de material. Checklist de montaje aparte con tareas de iluminación/escenografía."
+  },
+  {
+   "id": "n164",
+   "nombre": "Maquillaje Rock",
+   "lugar": "Valencia de Don Juan",
+   "fecha": "2026-08-08",
+   "formato": "Formato rock · 2 mesas X32 (Compact + Producer), IEM P2, frontfill",
+   "estado": "confirmado",
+   "material": [],
+   "notas": "Bolo doble el mismo día junto a «Noches de Neón» — equipo y furgón compartidos, vigilar solapes de material. Checklist de montaje aparte con tareas de sonido/eléctrico."
   }
  ],
- "seq": 163,
+ "seq": 165,
  "stage": {
   "w": 12,
   "d": 8
