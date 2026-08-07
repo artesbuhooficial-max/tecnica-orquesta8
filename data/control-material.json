@@ -206,9 +206,9 @@
       {
        "id": "n-i-cablealim",
        "name": "Cable alimentador",
-       "qty": 4,
+       "qty": 8,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": "ajustar cantidad"
       },
