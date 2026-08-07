@@ -496,7 +496,7 @@
       {
        "id": "r-i-p2",
        "name": "Behringer P2",
-       "qty": 1,
+       "qty": 2,
        "person": "",
        "retirada": false,
        "devuelta": false,
@@ -524,7 +524,7 @@
        "person": "",
        "retirada": false,
        "devuelta": false,
-       "notes": ""
+       "notes": "Falta 1"
       },
       {
        "id": "r-i-manguera",
