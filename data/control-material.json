@@ -513,7 +513,7 @@
        "name": "Rulo 50m",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -529,7 +529,7 @@
       {
        "id": "r-i-cablealim",
        "name": "Cable alimentador",
-       "qty": 4,
+       "qty": 14,
        "person": "",
        "retirada": false,
        "devuelta": false,
@@ -547,9 +547,9 @@
       {
        "id": "r-i-regleta",
        "name": "Regleta",
-       "qty": 3,
+       "qty": 6,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -559,6 +559,15 @@
        "qty": 6,
        "person": "",
        "retirada": false,
+       "devuelta": false,
+       "notes": ""
+      },
+      {
+       "id": "2inqmih7",
+       "name": "Jack",
+       "qty": 4,
+       "person": "",
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
@@ -619,15 +628,6 @@
        "notes": ""
       },
       {
-       "id": "r-i-xlrcorto",
-       "name": "Cable XLR corto de repuesto",
-       "qty": 2,
-       "person": "",
-       "retirada": false,
-       "devuelta": false,
-       "notes": "patch mesa/DI"
-      },
-      {
        "id": "r-i-antipop",
        "name": "Espuma anti-pop de repuesto",
        "qty": 2,
@@ -659,5 +659,5 @@
    ]
   }
  ],
- "activeId": "neon0001"
+ "activeId": "rock0001"
 }
