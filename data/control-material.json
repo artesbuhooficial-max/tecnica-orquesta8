@@ -514,7 +514,7 @@
        "name": "Behringer P2",
        "qty": 4,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": "unidades según nº de músicos"
       }
@@ -581,11 +581,11 @@
       {
        "id": "2inqmih7",
        "name": "Jack",
-       "qty": 4,
+       "qty": 5,
        "person": "",
        "retirada": true,
        "devuelta": false,
-       "notes": ""
+       "notes": "4 mono 1 stereo"
       },
       {
        "id": "susd81ek",
@@ -728,6 +728,21 @@
        "id": "tg19qefv",
        "name": "Trus par Led",
        "qty": 2,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      }
+     ]
+    },
+    {
+     "id": "zh311871",
+     "name": "Extintor",
+     "items": [
+      {
+       "id": "b4mudkb6",
+       "name": "Extintor",
+       "qty": 1,
        "person": "",
        "retirada": true,
        "devuelta": false,
