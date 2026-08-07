@@ -52,7 +52,7 @@
        "name": "Agarre tom",
        "qty": 3,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -76,7 +76,7 @@
        "name": "Shure SM57",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -155,11 +155,29 @@
       {
        "id": "n-i-p2",
        "name": "Behringer P2",
-       "qty": 1,
+       "qty": 2,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": "unidades según nº de músicos"
+      },
+      {
+       "id": "nzu1rvns",
+       "name": "Beheringuer P4",
+       "qty": 2,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": "Son de Altillo"
+      },
+      {
+       "id": "wdrbiu32",
+       "name": "In Ear inalámbrico ",
+       "qty": 2,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": "Roman y Manuel "
       }
      ]
     },
@@ -718,5 +736,5 @@
    ]
   }
  ],
- "activeId": "rock0001"
+ "activeId": "neon0001"
 }
