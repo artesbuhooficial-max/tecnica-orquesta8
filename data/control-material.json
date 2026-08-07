@@ -475,7 +475,7 @@
        "name": "DI bajo Behringer",
        "qty": 1,
        "person": "",
-       "retirada": true,
+       "retirada": false,
        "devuelta": false,
        "notes": ""
       },
@@ -484,7 +484,7 @@
        "name": "DI guitarra",
        "qty": 1,
        "person": "",
-       "retirada": true,
+       "retirada": false,
        "devuelta": false,
        "notes": ""
       }
@@ -499,7 +499,16 @@
        "name": "JBL serie 815 (medios-agudos)",
        "qty": 2,
        "person": "",
-       "retirada": false,
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      },
+      {
+       "id": "h8eb54kz",
+       "name": "Sub Grave",
+       "qty": 1,
+       "person": "",
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
@@ -549,16 +558,16 @@
        "person": "",
        "retirada": true,
        "devuelta": false,
-       "notes": ""
+       "notes": "Falta 1"
       },
       {
        "id": "r-i-xlr",
        "name": "Cable Canon (XLR) — Artes Búho",
        "qty": 22,
        "person": "",
-       "retirada": true,
+       "retirada": false,
        "devuelta": false,
-       "notes": ""
+       "notes": "Falta 1"
       },
       {
        "id": "r-i-regleta",
@@ -601,7 +610,17 @@
     {
      "id": "r-cat-mesa",
      "name": "Mesa de sonido",
-     "items": []
+     "items": [
+      {
+       "id": "tf70io7p",
+       "name": "X32 ",
+       "qty": 1,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      }
+     ]
     },
     {
      "id": "r-cat-extras",
@@ -691,6 +710,24 @@
        "qty": 1,
        "person": "Ctac",
        "retirada": false,
+       "devuelta": false,
+       "notes": ""
+      },
+      {
+       "id": "793cqynq",
+       "name": "Cajetín truss luces PowerCon",
+       "qty": 1,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      },
+      {
+       "id": "1f9t16bi",
+       "name": "Cable Shuko + PowerCon",
+       "qty": 1,
+       "person": "",
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
