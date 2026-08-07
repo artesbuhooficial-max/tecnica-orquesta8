@@ -206,7 +206,7 @@
       {
        "id": "n-i-xlr",
        "name": "Cable Canon (XLR) — Artes Búho",
-       "qty": 17,
+       "qty": 22,
        "person": "",
        "retirada": false,
        "devuelta": false,
@@ -216,6 +216,15 @@
        "id": "n-i-regleta",
        "name": "Regleta",
        "qty": 3,
+       "person": "",
+       "retirada": false,
+       "devuelta": false,
+       "notes": ""
+      },
+      {
+       "id": "c5h76sxl",
+       "name": "XLR largo ",
+       "qty": 5,
        "person": "",
        "retirada": false,
        "devuelta": false,
@@ -513,7 +522,7 @@
        "name": "Rulo 50m",
        "qty": 2,
        "person": "",
-       "retirada": true,
+       "retirada": false,
        "devuelta": false,
        "notes": ""
       },
@@ -533,7 +542,7 @@
        "person": "",
        "retirada": false,
        "devuelta": false,
-       "notes": "ajustar cantidad"
+       "notes": "Falta 1"
       },
       {
        "id": "r-i-xlr",
@@ -542,7 +551,7 @@
        "person": "",
        "retirada": false,
        "devuelta": false,
-       "notes": ""
+       "notes": "Falta 1"
       },
       {
        "id": "r-i-regleta",
@@ -560,7 +569,7 @@
        "person": "",
        "retirada": false,
        "devuelta": false,
-       "notes": ""
+       "notes": "Falta 2"
       },
       {
        "id": "2inqmih7",
