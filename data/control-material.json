@@ -92,7 +92,7 @@
       {
        "id": "n-i-se",
        "name": "SE",
-       "qty": 1,
+       "qty": 3,
        "person": "",
        "retirada": true,
        "devuelta": false,
@@ -215,7 +215,7 @@
       {
        "id": "n-i-cablealim",
        "name": "Cable alimentador IEC",
-       "qty": 8,
+       "qty": 15,
        "person": "",
        "retirada": true,
        "devuelta": false,
@@ -301,7 +301,7 @@
        "name": "Cinta americana (gaffer)",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -310,7 +310,7 @@
        "name": "Pinzas de repuesto para micro",
        "qty": 2,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -319,7 +319,7 @@
        "name": "Kit herramientas básico",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": "destornilladores, alicates"
       },
@@ -328,7 +328,7 @@
        "name": "Pilas de repuesto (AA/9V)",
        "qty": 4,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": "afinadores, in-ears si aplica"
       },
@@ -337,7 +337,7 @@
        "name": "Bridas / velcro para cables",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": "paquete"
       }
