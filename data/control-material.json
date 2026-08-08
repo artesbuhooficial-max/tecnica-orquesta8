@@ -16,7 +16,7 @@
        "name": "Pie de micrófono cantante",
        "qty": 4,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -25,7 +25,7 @@
        "name": "Pie aéreo",
        "qty": 2,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -34,7 +34,7 @@
        "name": "Pie bombo",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -43,7 +43,7 @@
        "name": "Pie caja",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -52,7 +52,7 @@
        "name": "Agarre tom",
        "qty": 3,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -61,7 +61,7 @@
        "name": "Pie Spare",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
@@ -76,7 +76,7 @@
        "name": "Shure SM57",
        "qty": 6,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -85,7 +85,7 @@
        "name": "Shure SM58",
        "qty": 11,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -94,7 +94,7 @@
        "name": "SE",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -103,7 +103,7 @@
        "name": "Set batería completo Senheisser ",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": "incluye clamps y case"
       }
@@ -118,7 +118,7 @@
        "name": "DI Doble ",
        "qty": 2,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -127,7 +127,7 @@
        "name": "DI Activa ",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
@@ -142,16 +142,16 @@
        "name": "Makie",
        "qty": 2,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
       {
        "id": "xsk8s9or",
        "name": "JBL ",
-       "qty": 2,
+       "qty": 3,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
@@ -166,7 +166,7 @@
        "name": "Behringer P2",
        "qty": 2,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": "unidades según nº de músicos"
       },
@@ -175,7 +175,7 @@
        "name": "Beheringuer P4",
        "qty": 2,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": "Son de Altillo"
       },
@@ -184,7 +184,7 @@
        "name": "In Ear inalámbrico ",
        "qty": 2,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": "Roman y Manuel "
       }
@@ -199,7 +199,7 @@
        "name": "Rulo 50m",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -208,7 +208,7 @@
        "name": "Manguera larga",
        "qty": 8,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -217,7 +217,7 @@
        "name": "Cable alimentador IEC",
        "qty": 8,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": "ajustar cantidad"
       },
@@ -226,7 +226,7 @@
        "name": "Cable Canon (XLR) — Artes Búho",
        "qty": 25,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -235,7 +235,7 @@
        "name": "Regleta",
        "qty": 20,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -244,7 +244,7 @@
        "name": "Rulo 25m",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -352,7 +352,7 @@
        "name": "Destornillador estrella ",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -361,7 +361,7 @@
        "name": "Bolones ",
        "qty": 15,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -370,7 +370,7 @@
        "name": "Tornillos tuercas sujeciones",
        "qty": 20,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
@@ -385,7 +385,7 @@
        "name": "Rulo RJ45",
        "qty": 2,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
@@ -400,7 +400,7 @@
        "name": "LINE ARRAY",
        "qty": 2,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -420,20 +420,11 @@
      "name": "Pantalla Led Telon",
      "items": [
       {
-       "id": "9t0njeey",
-       "name": "Palo Telón Led ",
-       "qty": 4,
-       "person": "",
-       "retirada": false,
-       "devuelta": false,
-       "notes": ""
-      },
-      {
        "id": "e5xzsyxt",
        "name": "Cables RJ45 conectores Telón ",
        "qty": 9,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
@@ -448,7 +439,7 @@
        "name": "Truss ",
        "qty": 8,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -457,7 +448,7 @@
        "name": "Barras angel cableado ",
        "qty": 4,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": "2 adelante 2 atrás "
       },
@@ -490,7 +481,7 @@
        "name": "Beam 7R",
        "qty": 6,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -499,7 +490,7 @@
        "name": "Wash AB",
        "qty": 4,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -508,7 +499,7 @@
        "name": "Wash Angel ",
        "qty": 2,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -517,7 +508,7 @@
        "name": "Cegadoras",
        "qty": 2,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -526,7 +517,7 @@
        "name": "3 Palm 5",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
