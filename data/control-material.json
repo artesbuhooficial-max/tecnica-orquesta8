@@ -451,6 +451,15 @@
        "retirada": true,
        "devuelta": false,
        "notes": ""
+      },
+      {
+       "id": "zjd2ba5z",
+       "name": "Tarima batería + Tablas",
+       "qty": 1,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
       }
      ]
     },
