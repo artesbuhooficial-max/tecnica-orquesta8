@@ -259,7 +259,7 @@
        "name": "X32 Compact",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -268,7 +268,7 @@
        "name": "Tiger Touch I",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
@@ -391,7 +391,7 @@
        "name": "SUB ",
        "qty": 3,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
@@ -523,7 +523,7 @@
        "name": "Flycase Palm 5, Regletas IEC",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -532,7 +532,7 @@
        "name": "Flycase Iluminación + Rj45 + DMX",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -550,7 +550,7 @@
        "name": "Flycase Cajetín X32",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
