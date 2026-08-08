@@ -514,7 +514,7 @@
        "name": "Flycase Corriente General",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -541,7 +541,7 @@
        "name": "Flycase Paños led ",
        "qty": 2,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       },
@@ -559,7 +559,7 @@
        "name": "Flycase Line Array ",
        "qty": 1,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
