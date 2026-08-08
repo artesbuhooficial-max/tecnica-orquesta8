@@ -192,7 +192,7 @@
     },
     {
      "id": "n-cat-cable",
-     "name": "Cableado y alimentación",
+     "name": "Cableado, Electricidad ",
      "items": [
       {
        "id": "n-i-rulo",
@@ -247,6 +247,15 @@
        "retirada": false,
        "devuelta": false,
        "notes": ""
+      },
+      {
+       "id": "x10khbbb",
+       "name": "Distribuidor Ángel ",
+       "qty": 1,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
       }
      ]
     },
@@ -266,6 +275,15 @@
       {
        "id": "dtvywi4y",
        "name": "Tiger Touch I",
+       "qty": 1,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      },
+      {
+       "id": "tnr62lqa",
+       "name": "Cajetín RJ45",
        "qty": 1,
        "person": "",
        "retirada": true,
@@ -576,8 +594,33 @@
     },
     {
      "id": "unq8y5fy",
-     "name": "Nueva categoría",
-     "items": []
+     "name": "Batería Silvia ",
+     "items": [
+      {
+       "id": "sxd0gadu",
+       "name": "Toda su batería ",
+       "qty": 1,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      }
+     ]
+    },
+    {
+     "id": "ida1usfg",
+     "name": "Ampli Bajo",
+     "items": [
+      {
+       "id": "52o0k0n7",
+       "name": "Ampli",
+       "qty": 1,
+       "person": "",
+       "retirada": true,
+       "devuelta": false,
+       "notes": ""
+      }
+     ]
     }
    ]
   },
