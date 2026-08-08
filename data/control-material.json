@@ -448,7 +448,7 @@
        "name": "Jennies ",
        "qty": 4,
        "person": "",
-       "retirada": false,
+       "retirada": true,
        "devuelta": false,
        "notes": ""
       }
